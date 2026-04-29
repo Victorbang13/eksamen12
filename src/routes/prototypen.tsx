@@ -36,16 +36,21 @@ function Prototype() {
           </div>
         </section>
 
-        <div className="flex justify-center px-4 py-6">
-          <iframe
-            title="FlexPOS onboarding prototype"
-            style={{ border: "none" }}
-            width={800}
-            height={450}
-            src="https://embed.figma.com/proto/lJH1sQMRckEgrwtfUsJ69i/Hovedopgave?node-id=21-468&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=21%3A468&embed-host=share&hide-ui=1&hotspot-hints=0&footer=false"
-            allowFullScreen
-            loading="lazy"
-          />
+        <div className="px-4 py-6">
+          <div
+            className="mx-auto w-full max-w-5xl"
+            style={{ aspectRatio: "16 / 10" }}
+          >
+            <iframe
+              title="FlexPOS onboarding prototype"
+              style={{ border: "none", display: "block" }}
+              width="100%"
+              height="100%"
+              src="https://embed.figma.com/proto/lJH1sQMRckEgrwtfUsJ69i/Hovedopgave?node-id=21-468&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=21%3A468&embed-host=share&hide-ui=1&hotspot-hints=0&footer=false"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
         </div>
 
         <div className="bg-primary on-primary text-primary-foreground">
