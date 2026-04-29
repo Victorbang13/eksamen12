@@ -42,7 +42,7 @@ function Prototype() {
             style={{ border: "none" }}
             width={800}
             height={450}
-            src="https://embed.figma.com/proto/lJH1sQMRckEgrwtfUsJ69i/Hovedopgave?node-id=21-468&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=21%3A468&embed-host=share"
+            src="https://embed.figma.com/proto/lJH1sQMRckEgrwtfUsJ69i/Hovedopgave?node-id=21-468&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=21%3A468&embed-host=share&hide-ui=1&hotspot-hints=0&footer=false"
             allowFullScreen
             loading="lazy"
           />
