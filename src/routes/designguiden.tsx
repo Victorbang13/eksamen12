@@ -25,7 +25,7 @@ const sections = [
   "Brug af elementer",
   "Afstande og komposition",
   "Farver",
-  "Tonalitet",
+  "Tone of voice",
 ];
 
 function Designguide() {
