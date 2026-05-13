@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Phone, Mail, Star, Menu, X, ArrowRight } from "lucide-react";
 
 const navLinkClass =
-  "px-3 py-2 text-sm font-medium text-primary/80 hover:text-primary transition-colors";
+  "px-4 py-2 text-[15px] font-normal text-primary hover:text-accent transition-colors";
 const navLinkActiveClass =
-  "px-3 py-2 text-sm font-medium text-primary border-b-2 border-accent";
+  "px-4 py-2 text-[15px] font-normal text-accent";
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
@@ -49,8 +49,7 @@ export function SiteNav() {
         <div className="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between gap-4">
           <Link
             to="/"
-            className="text-3xl font-extrabold tracking-tight text-primary"
-            style={{ fontFamily: "'Nunito', 'Mulish', system-ui, sans-serif", letterSpacing: "-0.02em" }}
+            className="text-[28px] font-bold text-primary leading-none"
           >
             Amero
           </Link>
@@ -86,10 +85,9 @@ export function SiteNav() {
           <div className="hidden md:block">
             <Link
               to="/prototypen"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-full font-medium text-sm hover:opacity-90 transition-opacity shadow-sm"
+              className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-full font-semibold text-[15px] hover:opacity-90 transition-opacity"
             >
               Prøv prototypen
-              <ArrowRight size={14} aria-hidden="true" />
             </Link>
           </div>
 
