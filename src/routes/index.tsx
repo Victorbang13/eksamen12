@@ -129,13 +129,11 @@ function Index() {
                 aria-hidden="true"
               />
               <blockquote className="text-xl lg:text-2xl text-primary leading-relaxed font-medium">
-                „Det giver en kæmpe ro i maven at vide, at vores nye frivillige
-                kan øve sig på kassen i et trygt testmiljø, inden butikken for
-                alvor åbner. Nu er der ingen, der er bange for at trykke
-                forkert, når de står alene på vagten."
+                "Man skal vende perspektivet fra at se på, hvad organisationens
+                behov er, til at tage afsæt i, hvad brugernes behov er."
               </blockquote>
               <figcaption className="mt-6 text-foreground/70 font-medium">
-                – Butiksleder / Frivilligkoordinator
+                – Astrid Haug
               </figcaption>
             </figure>
           </div>
