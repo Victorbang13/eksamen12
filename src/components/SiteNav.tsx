@@ -49,7 +49,8 @@ export function SiteNav() {
         <div className="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between gap-4">
           <Link
             to="/"
-            className="text-2xl font-bold tracking-tight text-primary"
+            className="text-3xl font-extrabold tracking-tight text-primary"
+            style={{ fontFamily: "'Nunito', 'Mulish', system-ui, sans-serif", letterSpacing: "-0.02em" }}
           >
             Amero
           </Link>
