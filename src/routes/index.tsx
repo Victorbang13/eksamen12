@@ -81,10 +81,10 @@ function Index() {
         </section>
 
         {/* Value props — F-pattern */}
-        <section className="bg-background">
+        <section className="bg-background" aria-labelledby="fordele">
           <div className="mx-auto max-w-6xl px-4 py-16 lg:py-20">
             <div className="max-w-2xl mb-12">
-              <h2 className="text-3xl sm:text-4xl text-primary">
+              <h2 id="fordele" tabIndex={-1} className="text-3xl sm:text-4xl text-primary scroll-mt-24 focus:outline-none">
                 En tryggere hverdag i kassen
               </h2>
               <p className="mt-4 text-lg text-foreground/80">
