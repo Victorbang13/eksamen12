@@ -129,8 +129,9 @@ function Index() {
         </section>
 
         {/* Social proof */}
-        <section className="bg-soft">
+        <section className="bg-soft" aria-labelledby="citat">
           <div className="mx-auto max-w-4xl px-4 py-16 lg:py-20">
+            <h2 id="citat" tabIndex={-1} className="sr-only scroll-mt-24 focus:outline-none">Citat</h2>
             <figure className="bg-white p-8 lg:p-12 rounded-sm shadow-sm border-l-4 border-accent relative">
               <Quote
                 size={48}
