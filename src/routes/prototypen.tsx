@@ -34,10 +34,17 @@ function Prototype() {
   return (
     <>
       <SiteNav />
+      <SectionNav
+        sections={[
+          { id: "intro", label: "Prototypen" },
+          { id: "embed", label: "Interaktiv prototype" },
+          { id: "videre", label: "Næste skridt" },
+        ]}
+      />
       <main id="main">
-        <section className="bg-softer">
+        <section className="bg-softer" aria-labelledby="intro">
           <div className="mx-auto max-w-4xl px-4 py-8">
-            <h1 className="text-3xl sm:text-4xl text-primary">Prototypen</h1>
+            <h1 id="intro" tabIndex={-1} className="text-3xl sm:text-4xl text-primary scroll-mt-24 focus:outline-none">Prototypen</h1>
             <p className="mt-3 text-base">
               Dette er en interaktiv Figma-prototype af det nye onboarding-flow
               til FlexPOS. Den er designet til at være tilgængelig for alle —
@@ -46,11 +53,15 @@ function Prototype() {
           </div>
         </section>
 
-        <PrototypeEmbed />
+        <section aria-labelledby="embed">
+          <h2 id="embed" tabIndex={-1} className="sr-only scroll-mt-24 focus:outline-none">Interaktiv prototype</h2>
+          <PrototypeEmbed />
+        </section>
 
 
-        <div className="bg-primary on-primary text-primary-foreground">
+        <section className="bg-primary on-primary text-primary-foreground" aria-labelledby="videre">
           <div className="mx-auto max-w-4xl px-4 py-8 text-center">
+            <h2 id="videre" tabIndex={-1} className="sr-only scroll-mt-24 focus:outline-none">Næste skridt</h2>
             <Link
               to="/designguiden"
               className="inline-block bg-background text-primary px-6 py-3 rounded-sm font-medium hover:opacity-90"
@@ -58,7 +69,7 @@ function Prototype() {
               Se Designguiden
             </Link>
           </div>
-        </div>
+        </section>
       </main>
     </>
   );
