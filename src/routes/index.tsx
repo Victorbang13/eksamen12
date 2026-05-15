@@ -146,7 +146,7 @@ function Index() {
               Klar til at se det i praksis?
             </h2>
             <p className="mt-4 text-lg text-foreground/80">
-              Tag det næste skridt – prøv prototypen eller dyk ned i
+              Tag det næste skridt –&gt; prøv prototypen eller dyk ned i
               opsætningsguiden.
             </p>
             <div className="mt-8 flex flex-wrap gap-4 justify-center items-center">
