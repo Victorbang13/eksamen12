@@ -155,7 +155,6 @@ function Index() {
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium hover:opacity-90 shadow-md"
               >
                 Test onboarding-flowet (Prototype)
-                <ArrowRight size={18} aria-hidden="true" />
               </Link>
               <Link
                 to="/designguiden"
