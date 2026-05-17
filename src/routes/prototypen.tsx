@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
-import { SectionNav } from "@/components/SectionNav";
+
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export const Route = createFileRoute("/prototypen")({
@@ -34,13 +34,6 @@ function Prototype() {
   return (
     <>
       <SiteNav />
-      <SectionNav
-        sections={[
-          { id: "intro", label: "Prototypen" },
-          { id: "embed", label: "Interaktiv prototype" },
-          { id: "videre", label: "Næste skridt" },
-        ]}
-      />
       <main id="main">
         <section className="bg-softer" aria-labelledby="intro">
           <div className="mx-auto max-w-4xl px-4 py-8">

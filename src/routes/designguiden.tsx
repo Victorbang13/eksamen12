@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
-import { SectionNav } from "@/components/SectionNav";
+
 
 const slug = (s: string) =>
   s
@@ -36,13 +36,9 @@ const sections = [
 ];
 
 function Designguide() {
-  const sectionItems = sections.map((title) => ({ id: slug(title), label: title }));
   return (
     <>
       <SiteNav />
-      <SectionNav
-        sections={[{ id: "intro", label: "Designguiden" }, ...sectionItems]}
-      />
       <main id="main">
         <section className="bg-soft" aria-labelledby="intro">
           <div className="mx-auto max-w-5xl px-4 py-12">

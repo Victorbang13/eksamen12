@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
-import { SectionNav } from "@/components/SectionNav";
+
 import { ShieldCheck, Clock, HandHeart, Quote, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -27,14 +27,6 @@ function Index() {
   return (
     <>
       <SiteNav />
-      <SectionNav
-        sections={[
-          { id: "intro", label: "Gør oplæringen tryg" },
-          { id: "fordele", label: "En tryggere hverdag" },
-          { id: "citat", label: "Citat" },
-          { id: "kom-i-gang", label: "Klar til at se det?" },
-        ]}
-      />
       <main id="main">
         {/* Hero — Z-pattern */}
         <section className="bg-soft" aria-labelledby="intro">
