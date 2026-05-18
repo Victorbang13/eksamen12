@@ -1,6 +1,75 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useRef, useState } from "react";
+import { Maximize2, Minimize2 } from "lucide-react";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
-import flowBibliotekImg from "@/assets/flow-bibliotek.png";
+import { useIsMobile } from "@/hooks/use-mobile";
+
+function FlowBibliotekEmbed() {
+  const isMobile = useIsMobile();
+  const [fullscreen, setFullscreen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const iframeSrc =
+    "https://embed.figma.com/proto/lJH1sQMRckEgrwtfUsJ69i/Hovedopgave?node-id=116-11874&scaling=scale-down-width&content-scaling=fixed&page-id=116%3A11565&starting-point-node-id=116%3A12251&embed-host=share&hide-ui=1&bg-color=FFFFFF";
+
+  const toggleFullscreen = async () => {
+    const el = containerRef.current;
+    if (!el) return;
+    try {
+      if (!document.fullscreenElement) {
+        await el.requestFullscreen?.();
+        setFullscreen(true);
+      } else {
+        await document.exitFullscreen?.();
+        setFullscreen(false);
+      }
+    } catch {
+      setFullscreen((v) => !v);
+    }
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className={
+        fullscreen
+          ? "fixed inset-0 z-50 bg-white p-2 flex flex-col"
+          : "w-full bg-white p-[15px] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.1)]"
+      }
+    >
+      {isMobile && (
+        <div className="flex justify-end pb-2">
+          <button
+            type="button"
+            onClick={toggleFullscreen}
+            className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-3 py-2 text-sm font-medium"
+            aria-label={fullscreen ? "Luk fuld skærm" : "Vis i fuld skærm"}
+          >
+            {fullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+            {fullscreen ? "Luk fuld skærm" : "Fuld skærm"}
+          </button>
+        </div>
+      )}
+      <div
+        className={
+          fullscreen
+            ? "relative flex-1 overflow-hidden rounded-lg bg-white"
+            : "relative w-full overflow-hidden rounded-lg bg-white"
+        }
+        style={fullscreen ? undefined : { height: 700 }}
+      >
+        <iframe
+          title="Flow-bibliotek prototype"
+          src={iframeSrc}
+          scrolling="no"
+          allowFullScreen
+          loading="lazy"
+          className="absolute top-0 left-0 w-full h-full border-0"
+        />
+      </div>
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/designguiden")({
   head: () => ({
@@ -184,7 +253,7 @@ function Designguide() {
                 som i fremtiden viser sig at kræve oplæring. Elementet er placeret ved login-skærmen, da det ikke bør
                 være nødvendigt at være logget ind — flowsne foregår i et sandbox-miljø.
               </p>
-              <ImageBox src={flowBibliotekImg} label="Flow-bibliotek" />
+              <FlowBibliotekEmbed />
             </div>
           </SectionShell>
 
