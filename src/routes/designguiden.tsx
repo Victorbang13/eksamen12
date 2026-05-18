@@ -186,7 +186,7 @@ function Designguide() {
                 som i fremtiden viser sig at kræve oplæring. Elementet er placeret ved login-skærmen, da det ikke bør
                 være nødvendigt at være logget ind — flowsne foregår i et sandbox-miljø.
               </p>
-              <ImageBox seed="flow-bibliotek" label="Midlertidigt billede — Flow-bibliotek" />
+              <ImageBox src="/user-uploads/7b823e83-71ed-4e1c-8518-883ef51d9566.png" label="Flow-bibliotek" />
             </div>
           </SectionShell>
 
