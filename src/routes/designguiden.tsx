@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
+import flowBibliotekImg from "@/assets/flow-bibliotek.png";
 
 export const Route = createFileRoute("/designguiden")({
   head: () => ({
@@ -35,11 +36,8 @@ function ImageBox({
 
   if (imageSrc) {
     return (
-      <figure className={`${ratio} w-full rounded-sm overflow-hidden border border-primary/15 bg-grey/50 relative`}>
+      <figure className={`${ratio} w-full rounded-sm overflow-hidden border border-primary/15 bg-grey/50`}>
         <img src={imageSrc} alt={label} className="w-full h-full object-cover" loading="lazy" />
-        <figcaption className="absolute bottom-2 left-2 text-xs bg-white/80 text-primary px-2 py-1 rounded-sm italic">
-          Midlertidigt billede
-        </figcaption>
       </figure>
     );
   }
