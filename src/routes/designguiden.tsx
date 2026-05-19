@@ -425,7 +425,7 @@ function Designguide() {
             </p>
 
             <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-              <ColorSwatch name="Mørkeblå - primær" hex="#233d68" textOn="dark" />
+              <ColorSwatch name="Mørkeblå - Primær" hex="#233d68" textOn="dark" />
               <ColorSwatch name="Lyseblå - Sekundær" hex="#4FAED1" />
               <ColorSwatch name="Lyseblå - Baggrund" hex="#DCEFF6" />
               <ColorSwatch name="Helt sart lyseblå" hex="#F0F8FF" />
