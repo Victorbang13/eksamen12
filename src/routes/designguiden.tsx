@@ -302,7 +302,7 @@ function Designguide() {
               <ColorSwatch name="Mørkegrå / brødtekst" hex="#333333" textOn="dark" />
             </div>
 
-            <ImageBox seed="farver" label="farveanvendelse" />
+
 
             <DoDontList
               dos={[
