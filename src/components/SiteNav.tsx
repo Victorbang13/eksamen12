@@ -49,9 +49,14 @@ export function SiteNav() {
         <div className="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between gap-4">
           <Link
             to="/"
-            className="text-[28px] font-bold text-primary leading-none"
+            className="leading-none"
+            aria-label="Amero – forside"
           >
-            Amero
+            <img
+              src="/amero-logo.png"
+              alt="Amero"
+              className="h-8 w-auto"
+            />
           </Link>
 
           <nav
