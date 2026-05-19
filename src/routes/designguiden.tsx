@@ -99,19 +99,40 @@ function ImageBox({
   ratio = "aspect-[16/9]",
   src,
   seed,
+  zoomable = false,
 }: {
   label?: string;
   ratio?: string;
   src?: string;
   seed?: string;
+  zoomable?: boolean;
 }) {
+  const [zoomed, setZoomed] = useState(false);
   const imageSrc = src ?? (seed ? `https://picsum.photos/seed/${encodeURIComponent(seed)}/1200/675` : undefined);
 
   if (imageSrc) {
     return (
-      <figure className={`${ratio} w-full rounded-sm overflow-hidden border border-primary/15 bg-grey/50`}>
-        <img src={imageSrc} alt={label} className="w-full h-full object-contain" loading="lazy" />
-      </figure>
+      <>
+        <figure className={`${ratio} w-full rounded-sm overflow-hidden border border-primary/15 bg-grey/50`}>
+          <img
+            src={imageSrc}
+            alt={label}
+            className={`w-full h-full object-contain ${zoomable ? "cursor-zoom-in" : ""}`}
+            loading="lazy"
+            onClick={zoomable ? () => setZoomed(true) : undefined}
+          />
+        </figure>
+        {zoomable && zoomed && (
+          <div
+            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 cursor-zoom-out"
+            onClick={() => setZoomed(false)}
+            role="dialog"
+            aria-label={`${label} – forstørret`}
+          >
+            <img src={imageSrc} alt={label} className="max-w-full max-h-full object-contain" />
+          </div>
+        )}
+      </>
     );
   }
 
@@ -123,6 +144,7 @@ function ImageBox({
     >
       {label}
     </div>
+
   );
 }
 
@@ -332,11 +354,11 @@ function Designguide() {
 
             <div className="space-y-6">
               <h3 className="text-xl text-primary pt-2">Oplæringsbibliotek</h3>
-              <ImageBox src={komposition1Img} label="afstande og komposition 1" />
+              <ImageBox src={komposition1Img} label="afstande og komposition 1" zoomable />
               <h3 className="text-xl text-primary pt-2">Opgaveoversigt</h3>
-              <ImageBox src={komposition2Img} label="afstande og komposition 2" />
+              <ImageBox src={komposition2Img} label="afstande og komposition 2" zoomable />
               <h3 className="text-xl text-primary pt-2">Hotspot</h3>
-              <ImageBox src={komposition3Img} label="afstande og komposition 3" />
+              <ImageBox src={komposition3Img} label="afstande og komposition 3" zoomable />
             </div>
 
             <DoDontList
