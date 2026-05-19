@@ -600,7 +600,51 @@ function Designguide() {
               brugere.
             </p>
 
+            <div className="pt-2 space-y-3">
+              <h3 className="text-xl text-primary">Tilladte font-weights</h3>
+              <p>
+                Kun tre vægte af Roboto må anvendes i løsningen. Hold dig til disse for at sikre et konsistent typografisk hierarki.
+              </p>
+              <ul className="rounded-sm border border-primary/15 bg-white/40 divide-y divide-primary/10">
+                <li className="flex items-baseline justify-between px-5 py-3">
+                  <span style={{ fontFamily: '"Roboto", system-ui, sans-serif', fontWeight: 400 }} className="text-lg">
+                    Roboto Regular
+                  </span>
+                  <span className="font-mono text-sm opacity-70">font-weight: 400;</span>
+                </li>
+                <li className="flex items-baseline justify-between px-5 py-3">
+                  <span style={{ fontFamily: '"Roboto", system-ui, sans-serif', fontWeight: 500 }} className="text-lg">
+                    Roboto Medium
+                  </span>
+                  <span className="font-mono text-sm opacity-70">font-weight: 500;</span>
+                </li>
+                <li className="flex items-baseline justify-between px-5 py-3">
+                  <span style={{ fontFamily: '"Roboto", system-ui, sans-serif', fontWeight: 700 }} className="text-lg">
+                    Roboto Bold
+                  </span>
+                  <span className="font-mono text-sm opacity-70">font-weight: 700;</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="pt-2 space-y-3">
+              <h3 className="text-xl text-primary">Brødtekst — CSS-regler</h3>
+              <p>
+                Brødtekst skal altid kodes med relative enheder (<code className="font-mono text-sm px-1.5 py-0.5 rounded bg-primary/10">rem</code>). Faste pixelværdier er forbudt af hensyn til WCAG 2.1, så brugeren kan zoome op til 200 % uden at designet knækker.
+              </p>
+              <CodeBlock
+                language="css"
+                code={`p {
+  font-family: "Roboto", system-ui, sans-serif;
+  font-size: 1rem;     /* 16px basis — skalerbar */
+  line-height: 1.5;    /* skydning for læsbarhed */
+  font-weight: 400;
+}`}
+              />
+            </div>
+
             <ImageBox src={typografiImg} label="typografi-hierarki" />
+
 
             <DoDontList
               dos={[
