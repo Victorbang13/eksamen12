@@ -316,7 +316,7 @@ function Designguide() {
                 {[
                   { id: "brug-af-elementer", label: "1. Brug af elementer" },
                   { id: "farver-og-kontraster", label: "2. Farver & Kontraster" },
-                  { id: "afstande-og-komposition", label: "3. Afstande og Komposition" },
+                  { id: "afstande-og-komposition", label: "3. Afstande og        Komposition" },
                   { id: "tone-of-voice", label: "4. Tone of Voice" },
                   { id: "typografi", label: "5. Typografi" },
                 ].map((item) => (
