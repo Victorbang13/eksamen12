@@ -1,26 +1,40 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { SiteNav, SiteFooter } from "@/components/SiteNav";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
-      </div>
-    </div>
+    <>
+      <SiteNav />
+      <main id="main">
+        <section className="bg-soft" aria-labelledby="nf-title">
+          <div className="mx-auto max-w-3xl px-4 py-20 text-center">
+            <p className="text-sm font-medium uppercase tracking-widest text-primary/70">Fejl 404</p>
+            <h1
+              id="nf-title"
+              tabIndex={-1}
+              className="mt-4 text-6xl sm:text-7xl text-primary scroll-mt-24 focus:outline-none"
+            >
+              Siden findes ikke
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed">
+              Vi kunne ikke finde den side, du ledte efter. Den er måske flyttet, eller linket kan være forkert.
+              Bare rolig — du kan altid gå tilbage til forsiden.
+            </p>
+            <div className="mt-10">
+              <Link
+                to="/"
+                className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                Gå til forsiden
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </>
   );
 }
 
