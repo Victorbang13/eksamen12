@@ -8,6 +8,7 @@ import opgaveoversigtImg from "@/assets/opgaveoversigt.png";
 import komposition1Img from "@/assets/komposition-1.png";
 import komposition2Img from "@/assets/komposition-2.png";
 import komposition3Img from "@/assets/komposition-3.png";
+import toneOfVoiceImg from "@/assets/tone-of-voice.png";
 
 
 
@@ -429,7 +430,7 @@ function Designguide() {
               </table>
             </div>
 
-            <ImageBox seed="tone-of-voice" label="tone of voice" />
+            <ImageBox src={toneOfVoiceImg} label="tone of voice" />
           </SectionShell>
 
           {/* 5. Typografi */}
