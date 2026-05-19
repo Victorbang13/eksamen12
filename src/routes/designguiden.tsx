@@ -595,10 +595,10 @@ function Designguide() {
               <CodeBlock
                 language="css"
                 code={`p {
-  font-family: "Roboto", system-ui, sans-serif;
+  font-family: "Roboto", system-ui, sans-serif; /* primær skrifttype med fallback */
   font-size: 1rem;     /* 16px basis — skalerbar */
   line-height: 1.5;    /* skydning for læsbarhed */
-  font-weight: 400;
+  font-weight: 400;    /* regular vægt til brødtekst */
 }`}
               />
             </div>
