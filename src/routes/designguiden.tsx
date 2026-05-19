@@ -399,12 +399,12 @@ function Designguide() {
               <CodeBlock
                 language="css"
                 code={`:root {
-  --color-primary:    #233d68;
-  --color-secondary:  #4faed1;
-  --color-ui-gray:    #626262;
-  --bg-light-blue:    #f0f8ff;
-  --bg-light-gray:    #f7f7f7;
-  --bg-white:         #ffffff;
+  --color-primary:    #233d68; /* mørkeblå — primær brandfarve */
+  --color-secondary:  #4faed1; /* lyseblå — sekundær accent */
+  --color-ui-gray:    #626262; /* neutral grå til UI-tekst og ikoner */
+  --bg-light-blue:    #f0f8ff; /* sart lyseblå baggrund */
+  --bg-light-gray:    #f7f7f7; /* lysegrå baggrund til sektioner */
+  --bg-white:         #ffffff; /* ren hvid baggrund */
 }`}
               />
             </div>
