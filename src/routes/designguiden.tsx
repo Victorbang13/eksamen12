@@ -481,6 +481,32 @@ function Designguide() {
               />
             </div>
 
+            <div className="pt-2 space-y-3">
+              <h3 className="text-xl text-primary">Exit-knapper</h3>
+              <p>
+                Error-farven <code className="font-mono text-sm px-1.5 py-0.5 rounded bg-primary/10">#D32F2F</code> bruges også som <strong>border</strong> på exit-knapper (f.eks. "Afslut flow" i opgaveoversigten). Det signalerer tydeligt, at handlingen afbryder brugerens flow, uden at knappen i sig selv fremstår alarmerende.
+              </p>
+              <CodeBlock
+                language="css"
+                code={`.btn-exit {
+  background: var(--bg-white);
+  color: var(--color-error-text);
+  border: 2px solid #D32F2F;        /* exit-border */
+  padding: 0.625rem 1.25rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-exit:hover  { background: var(--color-error-bg); }
+.btn-exit:focus-visible {
+  outline: 3px solid #D32F2F;
+  outline-offset: 2px;
+}`}
+              />
+            </div>
+
+
 
 
 
