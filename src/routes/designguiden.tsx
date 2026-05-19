@@ -428,7 +428,7 @@ function Designguide() {
               <ColorSwatch name="Mørkeblå - Primær" hex="#233d68" textOn="dark" />
               <ColorSwatch name="Lyseblå - Sekundær" hex="#4FAED1" />
               <ColorSwatch name="Lyseblå - Baggrund" hex="#DCEFF6" />
-              <ColorSwatch name="Helt sart lyseblå" hex="#F0F8FF" />
+              <ColorSwatch name="Lyseblå - Baggrund" hex="#F0F8FF" />
               <ColorSwatch name="Lysegrå" hex="#F7F7F7" />
               <ColorSwatch name="Hvid" hex="#FFFFFF" />
               <ColorSwatch name="Mørkegrå / brødtekst" hex="#333333" textOn="dark" />
