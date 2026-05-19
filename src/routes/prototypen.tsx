@@ -64,6 +64,7 @@ function Prototype() {
           </div>
         </section>
       </main>
+      <SiteFooter />
     </>
   );
 }
