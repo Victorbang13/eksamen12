@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState } from "react";
-import { Maximize2, Minimize2 } from "lucide-react";
+import { Maximize2, Minimize2, Check, Copy } from "lucide-react";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
 import flowBibliotekImg from "@/assets/flow-bibliotek.png";
 import hotspotImg from "@/assets/hotspot.png";
@@ -150,6 +150,66 @@ function ImageBox({
   );
 }
 
+function CodeBlock({ code, language = "css" }: { code: string; language?: string }) {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      /* noop */
+    }
+  };
+  return (
+    <div className="relative rounded-sm border border-primary/15 bg-primary text-primary-foreground overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-2 border-b border-white/10 text-xs font-mono uppercase tracking-wider opacity-80">
+        <span>{language}</span>
+        <button
+          type="button"
+          onClick={handleCopy}
+          className="inline-flex items-center gap-1.5 rounded-sm bg-white/10 hover:bg-white/20 transition-colors px-2 py-1 text-xs font-medium"
+          aria-label="Kopiér kode"
+        >
+          {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied ? "Kopieret" : "Kopiér"}
+        </button>
+      </div>
+      <pre className="overflow-x-auto p-4 text-sm leading-relaxed">
+        <code className="font-mono whitespace-pre">{code}</code>
+      </pre>
+    </div>
+  );
+}
+
+function StatusSwatch({
+  name,
+  textHex,
+  bgHex,
+  sample,
+}: {
+  name: string;
+  textHex: string;
+  bgHex: string;
+  sample: string;
+}) {
+  return (
+    <div className="rounded-sm border border-primary/10 overflow-hidden bg-white">
+      <div
+        className="px-4 py-5 text-sm font-medium"
+        style={{ backgroundColor: bgHex, color: textHex }}
+      >
+        {sample}
+      </div>
+      <div className="p-3 text-xs space-y-1">
+        <div className="font-medium text-sm">{name}</div>
+        <div className="font-mono opacity-70">Tekst: {textHex}</div>
+        <div className="font-mono opacity-70">Baggrund: {bgHex}</div>
+      </div>
+    </div>
+  );
+}
+
 function DoDontList({ dos, donts }: { dos: string[]; donts: string[] }) {
   return (
     <div className="grid gap-6 md:grid-cols-2 mt-6">
@@ -288,7 +348,52 @@ function Designguide() {
                 at brugeren ved, hvad der skal ske, og altid kan læse sig frem til, hvad de skal gøre.
               </p>
               <ImageBox src={hotspotImg} label="Hotspot" />
+
+              <div className="pt-2 space-y-3">
+                <h4 className="font-semibold text-primary">Code Snippet — primær knap</h4>
+                <p className="text-sm">
+                  Den primære knap bruges som "næste step" i hotspot og pop-ups. Byg den med følgende HTML/CSS og brug design tokens fremfor hard-codede HEX-værdier.
+                </p>
+                <CodeBlock
+                  language="html"
+                  code={`<button class="btn-primary" type="button">Næste</button>`}
+                />
+                <CodeBlock
+                  language="css"
+                  code={`.btn-primary {
+  background: var(--color-primary);
+  color: var(--bg-white);
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-family: "Roboto", system-ui, sans-serif;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* States */
+.btn-primary:hover    { background: #1a2f50; }
+.btn-primary:active   { background: #142540; }
+.btn-primary:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}`}
+                />
+                <p className="text-sm">
+                  Knappen skal altid implementere de fire interaktive tilstande:
+                  <code className="font-mono mx-1 px-1.5 py-0.5 rounded bg-primary/10">:hover</code>,
+                  <code className="font-mono mx-1 px-1.5 py-0.5 rounded bg-primary/10">:active</code>,
+                  <code className="font-mono mx-1 px-1.5 py-0.5 rounded bg-primary/10">:focus</code> og
+                  <code className="font-mono mx-1 px-1.5 py-0.5 rounded bg-primary/10">:disabled</code> — så brugeren altid får tydelig feedback på sin handling.
+                </p>
+              </div>
             </div>
+
 
             <div className="pt-4 space-y-3">
               <h3 className="text-xl text-primary">Opgaveoversigten</h3>
@@ -328,6 +433,55 @@ function Designguide() {
               <ColorSwatch name="Hvid" hex="#FFFFFF" />
               <ColorSwatch name="Mørkegrå / brødtekst" hex="#333333" textOn="dark" />
             </div>
+
+            <div className="pt-2 space-y-3">
+              <h3 className="text-xl text-primary">Design Tokens</h3>
+              <p>
+                Brug disse CSS-variabler som single source of truth for farver i koden. Definér dem én gang i <code className="font-mono text-sm px-1.5 py-0.5 rounded bg-primary/10">:root</code> og referer altid via <code className="font-mono text-sm px-1.5 py-0.5 rounded bg-primary/10">var(--token)</code>.
+              </p>
+              <CodeBlock
+                language="css"
+                code={`:root {
+  --color-primary:    #233d68;
+  --color-secondary:  #4faed1;
+  --color-ui-gray:    #626262;
+  --bg-light-blue:    #f0f8ff;
+  --bg-light-gray:    #f7f7f7;
+  --bg-white:         #ffffff;
+}`}
+              />
+            </div>
+
+            <div className="pt-2 space-y-3">
+              <h3 className="text-xl text-primary">Statusfarver</h3>
+              <p>
+                Statusfarver bruges altid som par (tekst på baggrund) for at sikre tilstrækkelig kontrast og en konsistent feedback-oplevelse på tværs af flowet.
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+                <StatusSwatch name="Success" textHex="#4CAF50" bgHex="#CEFFD1" sample="Ændringerne er gemt" />
+                <StatusSwatch name="Warning" textHex="#D38A33" bgHex="#FFF8B9" sample="Husk at gemme" />
+                <StatusSwatch name="Error" textHex="#D32F2F" bgHex="#FFDADA" sample="Noget gik galt" />
+                <StatusSwatch name="Info" textHex="#4FAED1" bgHex="#E5F6FD" sample="God at vide" />
+              </div>
+              <CodeBlock
+                language="css"
+                code={`:root {
+  --color-success-text: #4CAF50;
+  --color-success-bg:   #CEFFD1;
+
+  --color-warning-text: #D38A33;
+  --color-warning-bg:   #FFF8B9;
+
+  --color-error-text:   #D32F2F;
+  --color-error-bg:     #FFDADA;
+
+  --color-info-text:    #4FAED1;
+  --color-info-bg:      #E5F6FD;
+}`}
+              />
+            </div>
+
+
 
 
 
@@ -446,7 +600,51 @@ function Designguide() {
               brugere.
             </p>
 
+            <div className="pt-2 space-y-3">
+              <h3 className="text-xl text-primary">Tilladte font-weights</h3>
+              <p>
+                Kun tre vægte af Roboto må anvendes i løsningen. Hold dig til disse for at sikre et konsistent typografisk hierarki.
+              </p>
+              <ul className="rounded-sm border border-primary/15 bg-white/40 divide-y divide-primary/10">
+                <li className="flex items-baseline justify-between px-5 py-3">
+                  <span style={{ fontFamily: '"Roboto", system-ui, sans-serif', fontWeight: 400 }} className="text-lg">
+                    Roboto Regular
+                  </span>
+                  <span className="font-mono text-sm opacity-70">font-weight: 400;</span>
+                </li>
+                <li className="flex items-baseline justify-between px-5 py-3">
+                  <span style={{ fontFamily: '"Roboto", system-ui, sans-serif', fontWeight: 500 }} className="text-lg">
+                    Roboto Medium
+                  </span>
+                  <span className="font-mono text-sm opacity-70">font-weight: 500;</span>
+                </li>
+                <li className="flex items-baseline justify-between px-5 py-3">
+                  <span style={{ fontFamily: '"Roboto", system-ui, sans-serif', fontWeight: 700 }} className="text-lg">
+                    Roboto Bold
+                  </span>
+                  <span className="font-mono text-sm opacity-70">font-weight: 700;</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="pt-2 space-y-3">
+              <h3 className="text-xl text-primary">Brødtekst — CSS-regler</h3>
+              <p>
+                Brødtekst skal altid kodes med relative enheder (<code className="font-mono text-sm px-1.5 py-0.5 rounded bg-primary/10">rem</code>). Faste pixelværdier er forbudt af hensyn til WCAG 2.1, så brugeren kan zoome op til 200 % uden at designet knækker.
+              </p>
+              <CodeBlock
+                language="css"
+                code={`p {
+  font-family: "Roboto", system-ui, sans-serif;
+  font-size: 1rem;     /* 16px basis — skalerbar */
+  line-height: 1.5;    /* skydning for læsbarhed */
+  font-weight: 400;
+}`}
+              />
+            </div>
+
             <ImageBox src={typografiImg} label="typografi-hierarki" />
+
 
             <DoDontList
               dos={[
