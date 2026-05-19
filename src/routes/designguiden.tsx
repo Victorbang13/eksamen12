@@ -203,7 +203,32 @@ function Designguide() {
           </div>
         </section>
 
-        <div className="mx-auto max-w-5xl px-4 py-12 space-y-10">
+        <div className="mx-auto max-w-6xl px-4 py-12 grid gap-10 lg:grid-cols-[220px_1fr]">
+          <aside aria-label="Indhold på siden" className="hidden lg:block">
+            <nav className="sticky top-24 rounded-sm border border-primary/10 bg-grey p-5">
+              <p className="text-xs font-semibold uppercase tracking-widest text-primary/70">På denne side</p>
+              <ul className="mt-4 space-y-2 text-sm">
+                {[
+                  { id: "brug-af-elementer", label: "1. Brug af elementer" },
+                  { id: "farver-og-kontraster", label: "2. Farver & Kontraster" },
+                  { id: "afstande-og-komposition", label: "3. Afstande og Komposition" },
+                  { id: "tone-of-voice", label: "4. Tone of Voice" },
+                  { id: "typografi", label: "5. Typografi" },
+                ].map((item) => (
+                  <li key={item.id}>
+                    <a
+                      href={`#${item.id}`}
+                      className="block rounded-sm px-2 py-1.5 text-primary hover:bg-primary/10 transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </aside>
+
+          <div className="space-y-10 min-w-0">
           {/* 1. Brug af elementer */}
           <SectionShell id="brug-af-elementer" number={1} title="Brug af elementer (Atomic Design)">
             <p>
@@ -391,6 +416,7 @@ function Designguide() {
               ]}
             />
           </SectionShell>
+          </div>
         </div>
       </main>
       <SiteFooter />
