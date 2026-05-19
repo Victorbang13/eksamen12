@@ -461,7 +461,7 @@ function Designguide() {
                 <StatusSwatch name="Success" textHex="#4CAF50" bgHex="#CEFFD1" sample="Ændringerne er gemt" />
                 <StatusSwatch name="Warning" textHex="#D38A33" bgHex="#FFF8B9" sample="Husk at gemme" />
                 <StatusSwatch name="Error" textHex="#D32F2F" bgHex="#FFDADA" sample="Noget gik galt" />
-                <StatusSwatch name="Info" textHex="#4FAED1" bgHex="#E5F6FD" sample="God at vide" />
+                <StatusSwatch name="Info" textHex="#4FAED1" bgHex="#E5F6FD" sample="Godt at vide" />
               </div>
               <CodeBlock
                 language="css"
