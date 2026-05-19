@@ -349,49 +349,6 @@ function Designguide() {
               </p>
               <ImageBox src={hotspotImg} label="Hotspot" />
 
-              <div className="pt-2 space-y-3">
-                <h4 className="font-semibold text-primary">Code Snippet — primær knap</h4>
-                <p className="text-sm">
-                  Den primære knap bruges som "næste step" i hotspot og pop-ups. Byg den med følgende HTML/CSS og brug design tokens fremfor hard-codede HEX-værdier.
-                </p>
-                <CodeBlock
-                  language="html"
-                  code={`<button class="btn-primary" type="button">Næste</button>`}
-                />
-                <CodeBlock
-                  language="css"
-                  code={`.btn-primary {
-  background: var(--color-primary);
-  color: var(--bg-white);
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  font-weight: 500;
-  font-family: "Roboto", system-ui, sans-serif;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-/* States */
-.btn-primary:hover    { background: #1a2f50; }
-.btn-primary:active   { background: #142540; }
-.btn-primary:focus-visible {
-  outline: 3px solid var(--color-secondary);
-  outline-offset: 2px;
-}
-.btn-primary:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}`}
-                />
-                <p className="text-sm">
-                  Knappen skal altid implementere de fire interaktive tilstande:
-                  <code className="font-mono mx-1 px-1.5 py-0.5 rounded bg-primary/10">:hover</code>,
-                  <code className="font-mono mx-1 px-1.5 py-0.5 rounded bg-primary/10">:active</code>,
-                  <code className="font-mono mx-1 px-1.5 py-0.5 rounded bg-primary/10">:focus</code> og
-                  <code className="font-mono mx-1 px-1.5 py-0.5 rounded bg-primary/10">:disabled</code> — så brugeren altid får tydelig feedback på sin handling.
-                </p>
-              </div>
             </div>
 
 
