@@ -3,6 +3,8 @@ import { useRef, useState } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
 import flowBibliotekImg from "@/assets/flow-bibliotek.png";
+import hotspotImg from "@/assets/hotspot.png";
+
 
 function FlowBibliotekEmbed() {
   const [fullscreen, setFullscreen] = useState(false);
