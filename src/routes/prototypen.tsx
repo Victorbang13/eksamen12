@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
-import { SiteNav } from "@/components/SiteNav";
+import { SiteNav, SiteFooter } from "@/components/SiteNav";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -64,6 +64,7 @@ function Prototype() {
           </div>
         </section>
       </main>
+      <SiteFooter />
     </>
   );
 }
