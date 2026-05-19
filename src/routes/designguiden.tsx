@@ -253,7 +253,7 @@ function Designguide() {
                 som i fremtiden viser sig at kræve oplæring. Elementet er placeret ved login-skærmen, da det ikke bør
                 være nødvendigt at være logget ind — flowsne foregår i et sandbox-miljø.
               </p>
-              <FlowBibliotekEmbed />
+              <ImageBox src={flowBibliotekImg} label="Flow-bibliotek" />
             </div>
           </SectionShell>
 
