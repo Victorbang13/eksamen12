@@ -329,6 +329,7 @@ function Designguide() {
             </p>
 
             <div className="space-y-6">
+              <h3 className="text-xl text-primary pt-2">Oplæringsbibliotek</h3>
               <ImageBox src={komposition1Img} label="afstande og komposition 1" />
               <h3 className="text-xl text-primary pt-2">Opgaveoversigt</h3>
               <ImageBox seed="komposition-2" label="afstande og komposition 2" />
