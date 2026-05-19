@@ -22,7 +22,7 @@ export function SiteNav() {
           <div className="flex items-center gap-6">
             <span className="inline-flex items-center gap-2">
               <Phone size={13} aria-hidden="true" />
-              00 00 00 00
+              42 18 76 09
             </span>
             <span className="inline-flex items-center gap-2">
               <Mail size={13} aria-hidden="true" />
