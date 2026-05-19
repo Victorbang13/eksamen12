@@ -436,6 +436,9 @@ function Designguide() {
           {/* 5. Typografi */}
           <SectionShell id="typografi" number={5} title="Typografi">
             <p>
+              Den gennemgående skrifttype til hele løsningen er Roboto, som er Ameros officielle font i deres online designguide.
+            </p>
+            <p>
               For at imødekomme kravene til webtilgængelighed og læsbarhed er typografien opsat med fokus på hierarki
               og skalérbarhed. Brødteksten (p) har som udgangspunkt en basisstørrelse på 16px (svarende til 1rem i
               koden) og en linjeafstand (skydning) på 1.5, hvilket gør teksten nem at læse og følge for de utrygge
