@@ -217,7 +217,7 @@ function Designguide() {
               de faste tilstande (normal, hover, active) for f.eks. primære og sekundære knapper.
             </p>
 
-            <ImageBox seed="atomic-design" label="Atomic Design oversigt" />
+            <FlowBibliotekEmbed />
 
             <DoDontList
               dos={[
