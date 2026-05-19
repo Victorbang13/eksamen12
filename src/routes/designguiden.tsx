@@ -4,6 +4,8 @@ import { Maximize2, Minimize2 } from "lucide-react";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
 import flowBibliotekImg from "@/assets/flow-bibliotek.png";
 import hotspotImg from "@/assets/hotspot.png";
+import opgaveoversigtImg from "@/assets/opgaveoversigt.png";
+
 
 
 function FlowBibliotekEmbed() {
@@ -105,7 +107,7 @@ function ImageBox({
   if (imageSrc) {
     return (
       <figure className={`${ratio} w-full rounded-sm overflow-hidden border border-primary/15 bg-grey/50`}>
-        <img src={imageSrc} alt={label} className="w-full h-full object-cover" loading="lazy" />
+        <img src={imageSrc} alt={label} className="w-full h-full object-contain" loading="lazy" />
       </figure>
     );
   }
@@ -267,7 +269,7 @@ function Designguide() {
                 Oversigten over opgaver er der for at visualisere, hvor langt brugeren er i flowet. Derudover indeholder
                 den også en hurtig udvej fra flowet, hvilket er vigtigt for, at brugeren kan føle sig tryg.
               </p>
-              <ImageBox seed="opgaveoversigt" label="Opgaveoversigten" />
+              <ImageBox src={opgaveoversigtImg} label="Opgaveoversigten" />
             </div>
 
             <div className="pt-4 space-y-3">
