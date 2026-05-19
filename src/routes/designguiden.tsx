@@ -328,12 +328,12 @@ function Designguide() {
               ønskede indhold forbliver tydeligt.
             </p>
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-6">
               <ImageBox src={komposition1Img} label="afstande og komposition 1" />
+              <h3 className="text-xl text-primary pt-2">Opgaveoversigt</h3>
               <ImageBox seed="komposition-2" label="afstande og komposition 2" />
-              <div className="md:col-span-2">
-                <ImageBox seed="komposition-3" label="afstande og komposition 3" />
-              </div>
+              <h3 className="text-xl text-primary pt-2">Hotspot</h3>
+              <ImageBox seed="komposition-3" label="afstande og komposition 3" />
             </div>
 
             <DoDontList
