@@ -5,6 +5,7 @@ import { SiteNav, SiteFooter } from "@/components/SiteNav";
 import flowBibliotekImg from "@/assets/flow-bibliotek.png";
 import hotspotImg from "@/assets/hotspot.png";
 import opgaveoversigtImg from "@/assets/opgaveoversigt.png";
+import komposition1Img from "@/assets/komposition-1.png";
 
 
 
@@ -328,7 +329,7 @@ function Designguide() {
             </p>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <ImageBox seed="komposition-1" label="afstande og komposition 1" />
+              <ImageBox src={komposition1Img} label="afstande og komposition 1" />
               <ImageBox seed="komposition-2" label="afstande og komposition 2" />
               <div className="md:col-span-2">
                 <ImageBox seed="komposition-3" label="afstande og komposition 3" />
