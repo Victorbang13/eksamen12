@@ -234,7 +234,7 @@ function Designguide() {
 
         <div className="mx-auto max-w-6xl px-4 py-12 grid gap-10 lg:grid-cols-[220px_1fr]">
           <aside aria-label="Indhold på siden" className="hidden lg:block">
-            <nav className="sticky top-24 rounded-sm border border-primary/10 bg-grey p-5">
+            <nav className="sticky top-4 rounded-sm border border-primary/10 bg-grey p-5">
               <p className="text-xs font-semibold uppercase tracking-widest text-primary/70">På denne side</p>
               <ul className="mt-4 space-y-2 text-sm">
                 {[
