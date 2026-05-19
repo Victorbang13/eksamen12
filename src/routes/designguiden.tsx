@@ -3,6 +3,8 @@ import { useRef, useState } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
 import flowBibliotekImg from "@/assets/flow-bibliotek.png";
+import hotspotImg from "@/assets/hotspot.png";
+
 
 function FlowBibliotekEmbed() {
   const [fullscreen, setFullscreen] = useState(false);
@@ -256,7 +258,7 @@ function Designguide() {
                 Et hotspot er en god måde at indikere tydeligt, hvad næste step er. Dette komponent bruges til at sikre,
                 at brugeren ved, hvad der skal ske, og altid kan læse sig frem til, hvad de skal gøre.
               </p>
-              <ImageBox seed="hotspot" label="Hotspot" />
+              <ImageBox src={hotspotImg} label="Hotspot" />
             </div>
 
             <div className="pt-4 space-y-3">
