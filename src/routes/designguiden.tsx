@@ -429,7 +429,7 @@ function Designguide() {
               <ColorSwatch name="Lyseblå - Sekundær" hex="#4FAED1" />
               <ColorSwatch name="Lyseblå - Baggrund" hex="#DCEFF6" />
               <ColorSwatch name="Lyseblå - Baggrund" hex="#F0F8FF" />
-              <ColorSwatch name="Lysegrå" hex="#F7F7F7" />
+              <ColorSwatch name="Lysegrå - Baggrund" hex="#F7F7F7" />
               <ColorSwatch name="Hvid" hex="#FFFFFF" />
               <ColorSwatch name="Mørkegrå / brødtekst" hex="#333333" textOn="dark" />
             </div>
