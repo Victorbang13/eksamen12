@@ -7,6 +7,7 @@ import hotspotImg from "@/assets/hotspot.png";
 import opgaveoversigtImg from "@/assets/opgaveoversigt.png";
 import komposition1Img from "@/assets/komposition-1.png";
 import komposition2Img from "@/assets/komposition-2.png";
+import komposition3Img from "@/assets/komposition-3.png";
 
 
 
@@ -335,7 +336,7 @@ function Designguide() {
               <h3 className="text-xl text-primary pt-2">Opgaveoversigt</h3>
               <ImageBox src={komposition2Img} label="afstande og komposition 2" />
               <h3 className="text-xl text-primary pt-2">Hotspot</h3>
-              <ImageBox seed="komposition-3" label="afstande og komposition 3" />
+              <ImageBox src={komposition3Img} label="afstande og komposition 3" />
             </div>
 
             <DoDontList
