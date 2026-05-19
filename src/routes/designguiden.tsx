@@ -152,7 +152,7 @@ function DoDontList({ dos, donts }: { dos: string[]; donts: string[] }) {
   return (
     <div className="grid gap-6 md:grid-cols-2 mt-6">
       <div className="rounded-sm border border-primary/15 p-5 bg-white/40">
-        <h4 className="font-semibold text-primary">Do</h4>
+        <h4 className="font-semibold text-primary">Gør dette</h4>
         <ul className="mt-3 space-y-2 list-disc pl-5 text-sm leading-relaxed">
           {dos.map((d) => (
             <li key={d}>{d}</li>
@@ -160,7 +160,7 @@ function DoDontList({ dos, donts }: { dos: string[]; donts: string[] }) {
         </ul>
       </div>
       <div className="rounded-sm border border-primary/15 p-5 bg-white/40">
-        <h4 className="font-semibold text-primary">Don't</h4>
+        <h4 className="font-semibold text-primary">Gør ikke dette</h4>
         <ul className="mt-3 space-y-2 list-disc pl-5 text-sm leading-relaxed">
           {donts.map((d) => (
             <li key={d}>{d}</li>
@@ -384,8 +384,8 @@ function Designguide() {
                   <tr className="bg-primary/5 text-left">
                     <th className="p-3 border border-primary/15 font-semibold text-primary">Karakteristika</th>
                     <th className="p-3 border border-primary/15 font-semibold text-primary">Beskrivelse</th>
-                    <th className="p-3 border border-primary/15 font-semibold text-primary">Do</th>
-                    <th className="p-3 border border-primary/15 font-semibold text-primary">Don't</th>
+                    <th className="p-3 border border-primary/15 font-semibold text-primary">Gør dette</th>
+                    <th className="p-3 border border-primary/15 font-semibold text-primary">Gør ikke dette</th>
                   </tr>
                 </thead>
                 <tbody className="align-top">
