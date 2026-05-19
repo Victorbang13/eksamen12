@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Phone, Mail, Star, Menu, X, ArrowRight } from "lucide-react";
 
 const navLinkClass =
-  "px-4 py-2 text-[15px] font-semibold text-primary hover:text-[#4FAED1] transition-colors";
+  "px-4 py-2 text-[15px] font-semibold text-black hover:text-[#4FAED1] transition-colors";
 const navLinkActiveClass =
   "px-4 py-2 text-[15px] font-semibold !text-[#4FAED1]";
 
