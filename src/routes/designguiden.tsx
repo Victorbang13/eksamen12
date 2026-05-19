@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
 import { useIsMobile } from "@/hooks/use-mobile";
+import flowBibliotekImg from "@/assets/flow-bibliotek.png";
 
 function FlowBibliotekEmbed() {
   const isMobile = useIsMobile();
