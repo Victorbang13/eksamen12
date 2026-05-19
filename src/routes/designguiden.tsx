@@ -327,7 +327,13 @@ function Designguide() {
               ønskede indhold forbliver tydeligt.
             </p>
 
-            <ImageBox seed="komposition" label="afstande og komposition" />
+            <div className="grid gap-4 md:grid-cols-2">
+              <ImageBox seed="komposition-1" label="afstande og komposition 1" />
+              <ImageBox seed="komposition-2" label="afstande og komposition 2" />
+              <div className="md:col-span-2">
+                <ImageBox seed="komposition-3" label="afstande og komposition 3" />
+              </div>
+            </div>
 
             <DoDontList
               dos={[
