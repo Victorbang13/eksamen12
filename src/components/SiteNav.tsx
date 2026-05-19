@@ -22,11 +22,11 @@ export function SiteNav() {
           <div className="flex items-center gap-6">
             <span className="inline-flex items-center gap-2">
               <Phone size={13} aria-hidden="true" />
-              77 34 34 80
+              00 00 00 00
             </span>
             <span className="inline-flex items-center gap-2">
               <Mail size={13} aria-hidden="true" />
-              support@amero.dk
+              support@åmero.dk
             </span>
             <span>Vidensunivers</span>
             <span>Supportunivers</span>
