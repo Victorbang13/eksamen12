@@ -217,7 +217,10 @@ function StatusSwatch({
       </div>
       <div className="p-3 text-xs space-y-1">
         <div className="font-medium text-sm">{name}</div>
-        <div className="font-mono opacity-70">Tekst: {textHex}</div>
+        <div className="font-mono opacity-70">
+          {name === "Error" ? "Tekst & border på exit knapper: " : "Tekst: "}
+          {textHex}
+        </div>
         <div className="font-mono opacity-70">Baggrund: {bgHex}</div>
       </div>
     </div>
