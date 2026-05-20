@@ -723,7 +723,7 @@ function Designguide() {
           {/* 8. Tastaturnavigation og Fokus */}
           <SectionShell id="tastaturnavigation" number={8} title="Tastaturnavigation og Fokus">
             <p>
-              Systemet skal kunne betjenes fuldt ud af brugere, der anvender tastatur — enten af nødvendighed
+              Systemet skal kunne betjenes fuldt ud af brugere, der anvender tastatur, enten af nødvendighed
               (skærmlæser, motoriske udfordringer) eller af vane. Det betyder, at alle interaktive elementer skal kunne
               nås og aktiveres via <kbd className="font-mono text-xs px-1.5 py-0.5 rounded bg-primary/10 border border-primary/20">Tab</kbd>,
               <kbd className="font-mono text-xs px-1.5 py-0.5 rounded bg-primary/10 border border-primary/20 ml-1">Shift + Tab</kbd> og
