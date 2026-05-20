@@ -279,7 +279,7 @@ function SectionShell({
       <h2
         id={id}
         tabIndex={-1}
-        className="text-2xl text-primary border-b border-primary/20 pb-3 scroll-mt-24 focus:outline-none"
+        className="text-2xl text-primary border-b border-primary/20 pb-3 scroll-mt-40 focus:outline-none"
       >
         {`${number}. ${title}`}
       </h2>
