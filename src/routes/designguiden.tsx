@@ -481,8 +481,8 @@ function Designguide() {
           {/* 3. Afstande og Komposition */}
           <SectionShell id="afstande-og-komposition" number={3} title="Afstande og Komposition">
             <p>
-              For at sikre forståelse skal elementer, som har en betydning for hinanden, være tætte (gestalt).
-              Det er vigtigt, at elementerne har en fast afstand til omkringliggende elementer — det sikrer, at det
+              For at sikre forståelse skal elementer, som har en betydning for hinanden, være tætte .
+              Det er vigtigt, at elementerne har en fast afstand til omkringliggende elementer, det sikrer, at det
               ønskede indhold forbliver tydeligt.
             </p>
 
