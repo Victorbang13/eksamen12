@@ -473,7 +473,7 @@ function Designguide() {
                 "Brug aldrig den mørkegrå (#333333) som baggrundsfarve.",
                 "Brug ikke den lyseblå (#4FAED1) som tekstfarve, især ikke ovenpå den mørkeblå baggrund.",
                 "Undgå lyse farver som tekst ovenpå de lysegrå og lyseblå baggrunde, da kontrasten bliver for lav.",
-                "Undgå altid rød skrift på sort baggrund samt kombinationer af grøn og rød skrift over hinanden — det flimrer og er uhensigtsmæssigt for farveblinde.",
+                "Undgå altid rød skrift på sort baggrund samt kombinationer af grøn og rød skrift over hinanden.",
               ]}
             />
           </SectionShell>
