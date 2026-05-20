@@ -322,6 +322,10 @@ function Designguide() {
                   { id: "afstande-og-komposition", num: "3.", label: "Afstande og Komposition" },
                   { id: "tone-of-voice", num: "4.", label: "Tone of Voice" },
                   { id: "typografi", num: "5.", label: "Typografi" },
+                  { id: "grid-og-layout", num: "6.", label: "Grid og Layout" },
+                  { id: "ikoner", num: "7.", label: "Ikoner" },
+                  { id: "tastaturnavigation", num: "8.", label: "Tastaturnavigation og Fokus" },
+                  { id: "baeredygtighed", num: "9.", label: "Bæredygtighed og Billeder" },
                 ].map((item) => (
                   <li key={item.id}>
                     <a
