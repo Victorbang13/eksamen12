@@ -671,7 +671,7 @@ function Designguide() {
   padding-inline: clamp(1rem, 2vw, 2rem);            /* fleksibelt sideluft */
 }`}
             />
-            <ImageBox label="Tilføj billede af grid-systemet" />
+            <ImageBox src={gridLayoutImg} label="12-kolonne grid på POS-skærmen" zoomable />
           </SectionShell>
 
           {/* 7. Ikoner */}
