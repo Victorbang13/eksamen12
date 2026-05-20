@@ -501,6 +501,8 @@ function Designguide() {
               ]}
               donts={[
                 "Pres ikke for mange tekster og knapper tæt sammen (\"information overload\") — det overvælder brugeren og skaber friktion.",
+                "Ingen overlap: Lad aldrig UI-elementer (som tekstbokse, hotspots eller knapper) overlappe hinanden. Der skal altid være en defineret afstand (clearspace) omkring de elementer, der er relevante for det specifikke oplæringsflow, så de utrygge brugere nemt kan afkode dem uden at blive forvirrede.",
+                "Ingen rotation: Roter (drej) aldrig elementer. Alle tekster, knapper og pop-ups skal altid placeres vandret. Skæve elementer bryder sidens grid og skaber unødig visuel støj for målgruppen.",
               ]}
             />
           </SectionShell>
