@@ -676,8 +676,9 @@ function Designguide() {
           {/* 7. Ikoner */}
           <SectionShell id="ikoner" number={7} title="Ikoner">
             <p>
-              Løsningen anvender på nuværende tidspunkt ét enkelt ikon. Det skal altid fremstå roligt, konsistent og
-              være tilgængeligt for skærmlæsere.
+              Løsningen anvender et enkelt ikon. Det skal altid fremstå roligt, konsistent og være tilgængeligt for
+              skærmlæsere. Ikonet skal vise at man er igang med en opgave og bliver både vist i oplæringsbibloteket
+              og i hotspot boksene.
             </p>
 
             <div className="flex justify-center">
