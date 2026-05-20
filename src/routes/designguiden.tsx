@@ -391,7 +391,7 @@ function Designguide() {
           <SectionShell id="farver-og-kontraster" number={2} title="Farver & Kontraster">
             <p>
               For at sikre ekstern konsistens og genkendelighed for brugerne, bygger prototypen udelukkende på Ameros
-              officielle farvepalette. Det er afgørende, at disse specifikke HEX-koder overholdes, og at der altid er
+              farvepalette. Det er afgørende, at disse specifikke HEX-koder overholdes, og at der altid er
               tilstrækkelig kontrast mellem tekst og baggrund. For at overholde webtilgængelighedskravene (WCAG 2.1)
               skal der sikres et minimumskontrastforhold på 4.5:1 for normal tekst.
             </p>
