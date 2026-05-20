@@ -10,6 +10,7 @@ import komposition2Img from "@/assets/komposition-2.png";
 import komposition3Img from "@/assets/komposition-3.png";
 import toneOfVoiceImg from "@/assets/tone-of-voice.png";
 import typografiImg from "@/assets/typografi.jpg";
+import ikonStjerneImg from "@/assets/ikon-stjerne.webp";
 
 
 
@@ -675,50 +676,32 @@ function Designguide() {
           {/* 7. Ikoner */}
           <SectionShell id="ikoner" number={7} title="Ikoner">
             <p>
-              Ikoner bruges som visuelle ankre, der hjælper brugeren med hurtigt at afkode handlinger. De skal altid
-              fremstå rolige, konsistente og være tilgængelige for skærmlæsere.
+              Løsningen anvender på nuværende tidspunkt ét enkelt ikon. Det skal altid fremstå roligt, konsistent og
+              være tilgængeligt for skærmlæsere.
             </p>
 
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-              {[
-                { Icon: X, name: "Luk", label: "Luk dialog" },
-                { Icon: ArrowRight, name: "Næste", label: "Gå til næste trin" },
-                { Icon: Check, name: "Bekræft", label: "Bekræft handling" },
-                { Icon: ChevronLeft, name: "Tilbage", label: "Gå tilbage" },
-              ].map(({ Icon, name, label }) => (
-                <div key={name} className="rounded-sm border border-primary/10 bg-white p-5 flex flex-col items-center gap-3">
-                  <Icon className="h-8 w-8 text-primary" aria-label={label} />
-                  <div className="text-sm font-medium">{name}</div>
-                  <div className="font-mono text-xs opacity-70 text-center">aria-label="{label}"</div>
-                </div>
-              ))}
+            <div className="flex justify-center">
+              <div className="rounded-sm border border-primary/10 bg-white p-6 flex flex-col items-center gap-3 max-w-xs">
+                <img
+                  src={ikonStjerneImg}
+                  alt="Stjerne-ikon"
+                  className="h-16 w-16 object-contain"
+                />
+                <div className="text-sm font-medium">Stjerne</div>
+                <div className="font-mono text-xs opacity-70 text-center">alt="Stjerne-ikon"</div>
+              </div>
             </div>
-
-            <CodeBlock
-              language="html"
-              code={`<!-- Ikon som knap — altid med aria-label -->
-<button type="button" aria-label="Luk dialog">
-  <svg aria-hidden="true" focusable="false"><!-- ikon-path --></svg>
-</button>
-
-<!-- Dekorativt ikon ved siden af tekst — skjules for skærmlæser -->
-<span>
-  <svg aria-hidden="true" focusable="false"><!-- ikon-path --></svg>
-  Næste
-</span>`}
-            />
 
             <DoDontList
               dos={[
                 "Kod altid ikoner med en alternativ tekst (aria-label på knap-ikoner eller alt-tekst på img-ikoner). Det er et ufravigeligt WCAG-krav for ikke-tekstligt indhold og sikrer, at skærmlæsere kan afkode handlingen.",
-                "Skjul rent dekorative ikoner ved siden af tekst med aria-hidden=\"true\", så samme information ikke læses op to gange.",
               ]}
               donts={[
-                "Roter (drej) aldrig ikonerne via CSS eller i designet. De skal altid fremstå præcis som defineret i biblioteket for at bevare et roligt og konsekvent udtryk.",
-                "Brug aldrig et ikon alene som handling uden en tilknyttet tekstlig betydning (aria-label eller synlig label).",
+                "Roter (drej) aldrig ikonet via CSS eller i designet. Det skal altid fremstå præcis som defineret i biblioteket for at bevare et roligt og konsekvent udtryk.",
               ]}
             />
           </SectionShell>
+
 
           {/* 8. Tastaturnavigation og Fokus */}
           <SectionShell id="tastaturnavigation" number={8} title="Tastaturnavigation og Fokus">
