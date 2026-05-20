@@ -381,7 +381,7 @@ function Designguide() {
               <p>
                 I dette element er der mulighed for at tilføje flere flows. Det åbner muligheden for at oplære i flows,
                 som i fremtiden viser sig at kræve oplæring. Elementet er placeret ved login-skærmen, da det ikke bør
-                være nødvendigt at være logget ind — flowsne foregår i et sandbox-miljø.
+                være nødvendigt at være logget ind.
               </p>
               <ImageBox src={flowBibliotekImg} label="Flow-bibliotek" />
             </div>
