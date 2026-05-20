@@ -11,6 +11,7 @@ import komposition3Img from "@/assets/komposition-3.png";
 import toneOfVoiceImg from "@/assets/tone-of-voice.png";
 import typografiImg from "@/assets/typografi.jpg";
 import ikonStjerneImg from "@/assets/ikon-stjerne-ny.webp";
+import gridLayoutImg from "@/assets/grid-layout.png";
 
 
 
