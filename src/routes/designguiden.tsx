@@ -648,7 +648,7 @@ function Designguide() {
               struktur, der sikrer, at indhold, knapper og pop-ups altid placeres konsistent i forhold til hinanden.
             </p>
             <p>
-              Layoutet er designet specifikt til <strong>computerskærme</strong> — primært stationære POS-touchskærme i
+              Layoutet er designet specifikt til <strong>computerskærme</strong>, primært stationære POS-touchskærme i
               butiksmiljø. Det betyder, at vi <em>ikke</em> arbejder med klassiske mobile/tablet-breakpoints, og at
               programmøren kan se bort fra responsivt design til små skærme.
             </p>
