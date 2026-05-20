@@ -10,7 +10,7 @@ import komposition2Img from "@/assets/komposition-2.png";
 import komposition3Img from "@/assets/komposition-3.png";
 import toneOfVoiceImg from "@/assets/tone-of-voice.png";
 import typografiImg from "@/assets/typografi.jpg";
-import ikonStjerneImg from "@/assets/ikon-stjerne.webp";
+import ikonStjerneImg from "@/assets/ikon-stjerne-ny.webp";
 
 
 
