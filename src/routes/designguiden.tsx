@@ -784,7 +784,6 @@ function Designguide() {
             <DoDontList
               dos={[
                 "For at sikre bæredygtigt webdesign og hurtig performance skal alle billedfiler i løsningen komprimeres og konverteres til moderne webformater som WebP for at reducere dataoverførsel og CO₂-udledning.",
-                "Brug loading=\"lazy\" på billeder under folden, så de først hentes, når brugeren scroller dem ind i viewporten.",
                 "Angiv altid width og height på <img>, så browseren reserverer plads og undgår layout shifts.",
               ]}
               donts={[
