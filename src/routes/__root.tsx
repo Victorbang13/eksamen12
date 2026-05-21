@@ -62,6 +62,30 @@ export const Route = createRootRoute({
         href: appCss,
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              name: "AMERO",
+              url: "https://vbstudio.dk",
+              description:
+                "AMERO leverer FlexPOS kassesystem med et indbygget onboarding-flow til tryg og ensartet oplæring.",
+            },
+            {
+              "@type": "WebSite",
+              name: "AMERO — FlexPOS Onboarding",
+              url: "https://vbstudio.dk",
+              description:
+                "Et intuitivt onboarding-flow til FlexPOS, der gør oplæringen tryg og ensartet.",
+            },
+          ],
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
