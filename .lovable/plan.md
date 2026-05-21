@@ -1,79 +1,48 @@
-## Mål
-Berig de eksisterende sektioner på `/designguiden` med tekniske detaljer og kopierbare kodestumper, så siden fungerer som en praktisk front-end styleguide. Layout, tema, sektionsstruktur og eksisterende indhold bevares 1:1 — der tilføjes kun nye tekniske lag.
+Scoren var 98 / 95 / 96 / 100 (Performance / Accessibility / Best Practices / SEO) før mine seneste rettelser. Nedenfor er hver kategori opdelt i "jeg kan fikse" og "du skal fikse".
 
-## Nye genbrugelige komponenter (i `src/routes/designguiden.tsx`)
+## Jeg kan fikse i koden
 
-- **`CodeBlock`** — pæn kodeboks med mørk baggrund (`bg-primary`), monospace font, "Kopiér"-knap øverst til højre (bruger `navigator.clipboard.writeText`), valgfri sprog-label. Stylet så den passer ind i den eksisterende `bg-grey` / `border-primary/15` æstetik.
-- **`StatusSwatch`** — lille kort der viser et statusfarvepar (tekst-hex + baggrund-hex) som et reelt eksempel ("Success-besked") plus de to HEX-værdier monospace nedenunder.
+### Accessibility — kontrast (95 → 100)
+- Den aktive navigations-link i `SiteNav` bruger `!text-[#4FAED1]` på hvid baggrund (~2.5:1, fejler). Skift til mørkeblå/primær eller en mørkere accent.
+- Sandbox-badgen på forsiden (`bg-accent text-primary`) flaggedes også — øg kontrast ved fx at bruge `bg-primary text-primary-foreground` eller en mørkere variant.
 
-Ingen nye filer, ingen ændringer i `styles.css`, ingen ændringer i andre routes.
+### Performance — billeder og LCP
+- `amero-logo.png` vises som 177×40, men filen er 1200×271 (~23 KiB). Generér en mindre logo-variant (eller skifter til SVG) og tilføj eksplicit `width`/`height` for at fjerne CLS-bidraget.
+- Unsplash hero-billedet hentes i 900×675 men vises i 702×469. Sænk `w=` parameteren og tilføj `width`/`height`.
+- LCP-billedet (hero) mangler `fetchpriority="high"` og bør ikke have `loading="lazy"`. Begge dele rettes i `src/routes/index.tsx`.
 
-## Sektion 2 — Farver & Kontraster (tilføjelser)
+### Performance — preconnect
+- Tilføj `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>` i `__root.tsx` (~80 ms LCP-besparelse).
 
-Under den eksisterende `ColorSwatch`-grid tilføjes:
+### Best Practices — woff2 404
+- Én af Roboto-woff2-URL'erne i `src/styles.css` returnerer 404. Tjek og udskift med en gyldig Google Fonts v47-URL (eller skift til `<link>` mod fonts.googleapis.com).
 
-1. **Design Tokens kodeblok** (`CodeBlock` med CSS):
-   ```css
-   :root {
-     --color-primary: #233d68;
-     --color-secondary: #4faed1;
-     --color-ui-gray: #626262;
-     --bg-light-blue: #f0f8ff;
-     --bg-light-gray: #f7f7f7;
-     --bg-white: #ffffff;
-   }
-   ```
+## Du skal selv håndtere
 
-2. **Statusfarver** — ny undersektion "Statusfarver" med fire `StatusSwatch`-kort i et 2- eller 4-kolonne grid: Success (#4CAF50 / #CEFFD1), Warning (#D38A33 / #FFF8B9), Error (#D32F2F / #FFDADA), Info (#4FAED1 / #E5F6FD). Efterfulgt af en `CodeBlock` med tilsvarende CSS-variabler (`--color-success-text`, `--color-success-bg`, osv.).
+### Best Practices — HTTP-sikkerhedsheaders
+Disse kræver server-/platform-konfiguration, ikke kodeændring i appen:
+- **CSP** (Content-Security-Policy) — ingen header fundet.
+- **HSTS** med `preload` — ingen header fundet.
+- **COOP** (Cross-Origin-Opener-Policy) — ingen header fundet.
+- **X-Frame-Options / frame-ancestors** — ingen header fundet.
+- **Trusted Types** (`require-trusted-types-for`) i CSP — ingen header fundet.
 
-Den eksisterende `DoDontList` for farver bevares uændret nederst.
+Lovable's published hosting eksponerer ikke i dag custom response headers — det er en platform-/infrastruktur-beslutning. Hvis du vil have dem, skal du enten:
+1. Bede Lovable-support tilføje headers på dit `.lovable.app`/custom domain, eller
+2. Sætte dit eget custom domain bag en CDN (fx Cloudflare) hvor du selv kan styre headers.
 
-## Sektion 5 — Typografi (tilføjelser)
+### Performance — cache TTL
+- `/~flock.js` har 25 min cache. Det er Lovables egen analytics-fil — du kan ikke ændre den.
 
-Mellem den eksisterende brødtekst og `ImageBox` (typografi-hierarki) tilføjes:
+### "Reduce unused JavaScript / 3rd party"
+- Største bidragsydere er `chrome-extension://...` (din egen browsers ad-blocker mv.). Det påvirker kun din test, ikke rigtige brugere. Du kan ignorere — eller køre testen i incognito uden extensions for et renere resultat.
 
-1. **Font weights** — kort visuel liste med tre linjer "Roboto Regular 400 / Medium 500 / Bold 700", hver renderet i den faktiske vægt.
-2. **CSS kodeblok**:
-   ```css
-   p {
-     font-size: 1rem;        /* 16px basis */
-     line-height: 1.5;
-     font-family: "Roboto", system-ui, sans-serif;
-   }
-   ```
-3. **Kort note** om at WCAG kræver `rem` / relative enheder for 200% zoom — refererer til den eksisterende Do/Don't (ingen duplikering).
+### Manuel SEO/A11y-check
+Lighthouse markerer ting der kun kan tjekkes manuelt (logisk tab-rækkefølge, focus-trap, structured data validering osv.). Det er ikke fejl — bare en påmindelse om at teste manuelt.
 
-Eksisterende tekst, billede og `DoDontList` bevares.
-
-## Sektion 1 — Brug af elementer / Atomic Design (tilføjelser)
-
-Under "Hotspot"-underafsnittet (det eneste klart interaktive element med knap-natur, der allerede er beskrevet) tilføjes en **Code Snippet-boks** med HTML + CSS for en standard primær-knap, der matcher Ameros stil:
-
-```html
-<button class="btn-primary">Næste</button>
-```
-```css
-.btn-primary {
-  background: var(--color-primary);
-  color: var(--bg-white);
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.btn-primary:hover  { background: #1a2f50; }
-.btn-primary:active { background: #142540; }
-.btn-primary:focus  { outline: 3px solid var(--color-secondary); outline-offset: 2px; }
-.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
-```
-
-Efterfulgt af en kort linje der ekspliciterer de fire states: `:hover`, `:active`, `:focus`, `:disabled`.
-
-Alle eksisterende tekster, `FlowBibliotekEmbed`, `DoDontList`, `ImageBox`'es (Hotspot, Opgaveoversigt, Flow-bibliotek) bevares uændret.
-
-## Hvad der IKKE ændres
-
-- Layout, sticky-nav, sidebar, sektionsrækkefølge, farver, fonte, billeder, tabeller, eksisterende tekstindhold, `SiteNav`, `SiteFooter`, `styles.css`, andre routes.
-- Eksisterende Do/Don't-lister får ingen edits.
+## Foreslået rækkefølge når du godkender
+1. Kontrast-fixes i `SiteNav` og forsidens badge.
+2. Logo: byt til mindre fil + sæt `width`/`height`.
+3. Hero: sænk Unsplash-størrelse, fjern `loading="lazy"`, tilføj `fetchpriority="high"` + `width`/`height`.
+4. Preconnect til `fonts.gstatic.com`.
+5. Find og udskift den 404'ende Roboto-woff2.
