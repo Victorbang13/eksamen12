@@ -15,6 +15,64 @@ import gridLayoutImg from "@/assets/grid-layout.png";
 
 
 
+type NavItem = { id: string; num: string; label: string };
+
+function SideNav({ items }: { items: NavItem[] }) {
+  const [activeId, setActiveId] = useState<string>(items[0]?.id ?? "");
+
+  useEffect(() => {
+    const sections = items
+      .map((i) => document.getElementById(i.id))
+      .filter((el): el is HTMLElement => !!el);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) {
+          setActiveId(visible[0].target.id);
+        }
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: [0, 0.25, 0.5, 1] },
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [items]);
+
+  return (
+    <aside aria-label="Indhold på siden" className="hidden lg:block">
+      <nav className="sticky top-32 rounded-sm border border-primary/10 bg-grey p-5">
+        <p className="text-xs font-semibold uppercase tracking-widest text-primary/70">På denne side</p>
+        <ul className="mt-4 space-y-2 text-sm">
+          {items.map((item) => {
+            const isActive = item.id === activeId;
+            return (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  aria-current={isActive ? "location" : undefined}
+                  className={`flex gap-1.5 rounded-sm px-2 py-1.5 transition-colors ${
+                    isActive
+                      ? "bg-primary text-primary-foreground font-semibold"
+                      : "text-primary hover:bg-primary/10"
+                  }`}
+                >
+                  <span className="shrink-0">{item.num}</span>
+                  <span>{item.label}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </aside>
+  );
+}
+
+
 function FlowBibliotekEmbed() {
   const [fullscreen, setFullscreen] = useState(false);
   const [active, setActive] = useState(false);
