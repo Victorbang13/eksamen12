@@ -91,7 +91,7 @@ export function SiteNav() {
           <div className="hidden md:block">
             <Link
               to="/prototypen"
-              className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-md font-semibold text-[15px] hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-md font-semibold text-[15px] hover:opacity-90 transition-opacity"
             >
               Prøv prototypen
             </Link>
