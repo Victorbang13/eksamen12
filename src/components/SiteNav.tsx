@@ -4,9 +4,9 @@ import { Phone, Mail, Star, Menu, X, ArrowRight } from "lucide-react";
 import ameroLogo from "@/assets/amero-logo.png";
 
 const navLinkClass =
-  "px-4 py-2 text-[15px] font-semibold text-black hover:text-[#4FAED1] transition-colors";
+  "px-4 py-2 text-[15px] font-semibold text-black hover:text-primary transition-colors";
 const navLinkActiveClass =
-  "px-4 py-2 text-[15px] font-semibold !text-[#4FAED1]";
+  "px-4 py-2 text-[15px] font-semibold !text-primary underline underline-offset-8 decoration-2";
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
@@ -56,6 +56,8 @@ export function SiteNav() {
             <img
               src={ameroLogo}
               alt="Amero logo"
+              width={180}
+              height={40}
               className="h-8 w-auto"
             />
           </Link>
