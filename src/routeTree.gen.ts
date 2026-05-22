@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrototypenRouteImport } from './routes/prototypen'
+import { Route as HvordanLaverManReturIFlexposRouteImport } from './routes/hvordan-laver-man-retur-i-flexpos'
+import { Route as FlexposPengeskuffeAabnerIkkeRouteImport } from './routes/flexpos-pengeskuffe-aabner-ikke'
+import { Route as FlexposOplaeringNyeMedarbejdereRouteImport } from './routes/flexpos-oplaering-nye-medarbejdere'
 import { Route as DesignguidenRouteImport } from './routes/designguiden'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -24,6 +27,24 @@ const PrototypenRoute = PrototypenRouteImport.update({
   path: '/prototypen',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HvordanLaverManReturIFlexposRoute =
+  HvordanLaverManReturIFlexposRouteImport.update({
+    id: '/hvordan-laver-man-retur-i-flexpos',
+    path: '/hvordan-laver-man-retur-i-flexpos',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FlexposPengeskuffeAabnerIkkeRoute =
+  FlexposPengeskuffeAabnerIkkeRouteImport.update({
+    id: '/flexpos-pengeskuffe-aabner-ikke',
+    path: '/flexpos-pengeskuffe-aabner-ikke',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FlexposOplaeringNyeMedarbejdereRoute =
+  FlexposOplaeringNyeMedarbejdereRouteImport.update({
+    id: '/flexpos-oplaering-nye-medarbejdere',
+    path: '/flexpos-oplaering-nye-medarbejdere',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const DesignguidenRoute = DesignguidenRouteImport.update({
   id: '/designguiden',
   path: '/designguiden',
@@ -38,12 +59,18 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/designguiden': typeof DesignguidenRoute
+  '/flexpos-oplaering-nye-medarbejdere': typeof FlexposOplaeringNyeMedarbejdereRoute
+  '/flexpos-pengeskuffe-aabner-ikke': typeof FlexposPengeskuffeAabnerIkkeRoute
+  '/hvordan-laver-man-retur-i-flexpos': typeof HvordanLaverManReturIFlexposRoute
   '/prototypen': typeof PrototypenRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/designguiden': typeof DesignguidenRoute
+  '/flexpos-oplaering-nye-medarbejdere': typeof FlexposOplaeringNyeMedarbejdereRoute
+  '/flexpos-pengeskuffe-aabner-ikke': typeof FlexposPengeskuffeAabnerIkkeRoute
+  '/hvordan-laver-man-retur-i-flexpos': typeof HvordanLaverManReturIFlexposRoute
   '/prototypen': typeof PrototypenRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
@@ -51,20 +78,48 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/designguiden': typeof DesignguidenRoute
+  '/flexpos-oplaering-nye-medarbejdere': typeof FlexposOplaeringNyeMedarbejdereRoute
+  '/flexpos-pengeskuffe-aabner-ikke': typeof FlexposPengeskuffeAabnerIkkeRoute
+  '/hvordan-laver-man-retur-i-flexpos': typeof HvordanLaverManReturIFlexposRoute
   '/prototypen': typeof PrototypenRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/designguiden' | '/prototypen' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/designguiden'
+    | '/flexpos-oplaering-nye-medarbejdere'
+    | '/flexpos-pengeskuffe-aabner-ikke'
+    | '/hvordan-laver-man-retur-i-flexpos'
+    | '/prototypen'
+    | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/designguiden' | '/prototypen' | '/sitemap.xml'
-  id: '__root__' | '/' | '/designguiden' | '/prototypen' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/designguiden'
+    | '/flexpos-oplaering-nye-medarbejdere'
+    | '/flexpos-pengeskuffe-aabner-ikke'
+    | '/hvordan-laver-man-retur-i-flexpos'
+    | '/prototypen'
+    | '/sitemap.xml'
+  id:
+    | '__root__'
+    | '/'
+    | '/designguiden'
+    | '/flexpos-oplaering-nye-medarbejdere'
+    | '/flexpos-pengeskuffe-aabner-ikke'
+    | '/hvordan-laver-man-retur-i-flexpos'
+    | '/prototypen'
+    | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DesignguidenRoute: typeof DesignguidenRoute
+  FlexposOplaeringNyeMedarbejdereRoute: typeof FlexposOplaeringNyeMedarbejdereRoute
+  FlexposPengeskuffeAabnerIkkeRoute: typeof FlexposPengeskuffeAabnerIkkeRoute
+  HvordanLaverManReturIFlexposRoute: typeof HvordanLaverManReturIFlexposRoute
   PrototypenRoute: typeof PrototypenRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
@@ -83,6 +138,27 @@ declare module '@tanstack/react-router' {
       path: '/prototypen'
       fullPath: '/prototypen'
       preLoaderRoute: typeof PrototypenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hvordan-laver-man-retur-i-flexpos': {
+      id: '/hvordan-laver-man-retur-i-flexpos'
+      path: '/hvordan-laver-man-retur-i-flexpos'
+      fullPath: '/hvordan-laver-man-retur-i-flexpos'
+      preLoaderRoute: typeof HvordanLaverManReturIFlexposRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flexpos-pengeskuffe-aabner-ikke': {
+      id: '/flexpos-pengeskuffe-aabner-ikke'
+      path: '/flexpos-pengeskuffe-aabner-ikke'
+      fullPath: '/flexpos-pengeskuffe-aabner-ikke'
+      preLoaderRoute: typeof FlexposPengeskuffeAabnerIkkeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flexpos-oplaering-nye-medarbejdere': {
+      id: '/flexpos-oplaering-nye-medarbejdere'
+      path: '/flexpos-oplaering-nye-medarbejdere'
+      fullPath: '/flexpos-oplaering-nye-medarbejdere'
+      preLoaderRoute: typeof FlexposOplaeringNyeMedarbejdereRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/designguiden': {
@@ -105,9 +181,21 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DesignguidenRoute: DesignguidenRoute,
+  FlexposOplaeringNyeMedarbejdereRoute: FlexposOplaeringNyeMedarbejdereRoute,
+  FlexposPengeskuffeAabnerIkkeRoute: FlexposPengeskuffeAabnerIkkeRoute,
+  HvordanLaverManReturIFlexposRoute: HvordanLaverManReturIFlexposRoute,
   PrototypenRoute: PrototypenRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
