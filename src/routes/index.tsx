@@ -65,10 +65,10 @@ function Index() {
             <div className="relative">
               <div className="aspect-[4/3] w-full rounded-md bg-white shadow-lg border border-soft overflow-hidden flex items-center justify-center">
                 <img
-                  src="https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=540&q=70"
+                  src="/flexpos-mockup.webp"
                   alt="UI mockup af FlexPOS kassesystem med interaktive hotspots til oplæring"
-                  width={540}
-                  height={405}
+                  width={1920}
+                  height={1299}
                   fetchPriority="high"
                   decoding="async"
                   className="w-full h-full object-cover"
