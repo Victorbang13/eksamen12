@@ -41,7 +41,7 @@ function Index() {
               <p className="mt-6 text-lg sm:text-xl text-foreground/80 leading-relaxed">
                 Oplev vores nye indbyggede onboarding. Et sikkert testmiljø,
                 hvor nye medarbejdere og frivillige kan lære systemet at kende
-                i deres eget tempo – helt uden frygt for at lave fejl i kassen.
+                i deres eget tempo, helt uden frygt for at lave fejl i kassen.
                 Prøv{" "}
                 <Link to="/prototypen" className="text-primary underline underline-offset-4 hover:opacity-80 font-medium">
                   den interaktive prototype
