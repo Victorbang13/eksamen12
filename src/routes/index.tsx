@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
 
-import { ShieldCheck, Clock, HandHeart, Quote, ArrowRight } from "lucide-react";
+import { ShieldCheck, Clock, HandHeart, Quote, ArrowRight, BookOpen, RotateCcw, Wrench } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -138,6 +138,106 @@ function Index() {
                 – Astrid Haug
               </figcaption>
             </figure>
+          </div>
+        </section>
+
+        {/* Topic cluster / Pillar links — supporting guides */}
+        <section className="bg-background" aria-labelledby="vidensbase">
+          <div className="mx-auto max-w-5xl px-4 py-20 lg:py-28">
+            <header className="max-w-2xl mb-14">
+              <p className="text-sm font-medium uppercase tracking-widest text-primary/70">
+                Vidensbase
+              </p>
+              <h2
+                id="vidensbase"
+                tabIndex={-1}
+                className="mt-4 text-3xl sm:text-4xl text-primary scroll-mt-24 focus:outline-none"
+              >
+                Få mest ud af FlexPOS i hverdagen
+              </h2>
+              <p className="mt-6 text-lg leading-relaxed text-foreground/80">
+                Vi har samlet vores mest brugte vejledninger ét sted. Hver guide
+                er skrevet i et roligt og tydeligt sprog, så både nye frivillige
+                og erfarne medarbejdere hurtigt kan finde svar – uden teknisk
+                forhåndsviden.
+              </p>
+            </header>
+
+            <nav aria-label="Relaterede guides til FlexPOS">
+              <ul className="grid gap-6 md:grid-cols-3">
+                <li>
+                  <Link
+                    to="/flexpos-oplaering-nye-medarbejdere"
+                    className="group block h-full bg-softer p-8 rounded-sm border border-soft hover:border-primary hover:shadow-md transition-all focus-visible:outline-offset-4"
+                  >
+                    <BookOpen
+                      size={32}
+                      className="text-primary mb-5"
+                      aria-hidden="true"
+                    />
+                    <h3 className="text-xl text-primary mb-3 leading-snug">
+                      FlexPOS oplæring af nye medarbejdere
+                    </h3>
+                    <p className="text-foreground/80 leading-relaxed mb-5">
+                      En tryg og struktureret introduktion til kassesystemet –
+                      tilrettelagt så nye brugere kan øve sig i deres eget tempo.
+                    </p>
+                    <span className="inline-flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
+                      Læs guiden
+                      <ArrowRight size={16} aria-hidden="true" />
+                    </span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/hvordan-laver-man-retur-i-flexpos"
+                    className="group block h-full bg-softer p-8 rounded-sm border border-soft hover:border-primary hover:shadow-md transition-all focus-visible:outline-offset-4"
+                  >
+                    <RotateCcw
+                      size={32}
+                      className="text-primary mb-5"
+                      aria-hidden="true"
+                    />
+                    <h3 className="text-xl text-primary mb-3 leading-snug">
+                      Hvordan laver man retur i FlexPOS?
+                    </h3>
+                    <p className="text-foreground/80 leading-relaxed mb-5">
+                      Trin for trin-vejledning til at gennemføre en retur korrekt,
+                      så kassen altid stemmer ved dagens afslutning.
+                    </p>
+                    <span className="inline-flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
+                      Se fremgangsmåden
+                      <ArrowRight size={16} aria-hidden="true" />
+                    </span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/flexpos-pengeskuffe-aabner-ikke"
+                    className="group block h-full bg-softer p-8 rounded-sm border border-soft hover:border-primary hover:shadow-md transition-all focus-visible:outline-offset-4"
+                  >
+                    <Wrench
+                      size={32}
+                      className="text-primary mb-5"
+                      aria-hidden="true"
+                    />
+                    <h3 className="text-xl text-primary mb-3 leading-snug">
+                      FlexPOS pengeskuffe åbner ikke
+                    </h3>
+                    <p className="text-foreground/80 leading-relaxed mb-5">
+                      En rolig tjekliste til hurtig fejlfinding – fra kabler og
+                      strøm til printer-drivere og kasseindstillinger.
+                    </p>
+                    <span className="inline-flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
+                      Start fejlfinding
+                      <ArrowRight size={16} aria-hidden="true" />
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
         </section>
 
