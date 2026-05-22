@@ -8,7 +8,7 @@ import opgaveoversigtImg from "@/assets/opgaveoversigt.png";
 import komposition1Img from "@/assets/komposition-1.png";
 import komposition2Img from "@/assets/komposition-2.png";
 import komposition3Img from "@/assets/komposition-3.png";
-import toneOfVoiceImg from "@/assets/tone-of-voice.png";
+import toneOfVoiceImg from "@/assets/tone-of-voice.webp";
 import typografiImg from "@/assets/typografi.webp";
 import ikonStjerneImg from "@/assets/ikon-stjerne-ny.webp";
 import gridLayoutImg from "@/assets/grid-layout.png";
