@@ -45,10 +45,6 @@ function Index() {
                 Prøv{" "}
                 <Link to="/prototypen" className="text-primary underline underline-offset-4 hover:opacity-80 font-medium">
                   den interaktive prototype
-                </Link>{" "}
-                eller dyk ned i{" "}
-                <Link to="/designguiden" className="text-primary underline underline-offset-4 hover:opacity-80 font-medium">
-                  ​
                 </Link>
                 .
               </p>
