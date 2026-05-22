@@ -86,7 +86,7 @@ function Index() {
               </h2>
               <p className="mt-4 text-lg text-foreground/80">
                 Tre konkrete fordele, der hjælper jeres nye brugere godt fra
-                start – uanset om de er frivillige eller fastansatte.
+                start, uanset om de er frivillige eller fastansatte.
               </p>
             </div>
 
