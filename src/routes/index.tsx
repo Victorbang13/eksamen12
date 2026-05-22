@@ -42,6 +42,15 @@ function Index() {
                 Oplev vores nye indbyggede onboarding. Et sikkert testmiljø,
                 hvor nye medarbejdere og frivillige kan lære systemet at kende
                 i deres eget tempo – helt uden frygt for at lave fejl i kassen.
+                Prøv{" "}
+                <Link to="/prototypen" className="text-primary underline underline-offset-4 hover:opacity-80 font-medium">
+                  den interaktive prototype
+                </Link>{" "}
+                eller dyk ned i{" "}
+                <Link to="/designguiden" className="text-primary underline underline-offset-4 hover:opacity-80 font-medium">
+                  opsætningsguiden til Amero-konsulenter
+                </Link>
+                .
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
