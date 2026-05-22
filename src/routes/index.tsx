@@ -45,8 +45,8 @@ function Index() {
                 Prøv{" "}
                 <Link to="/prototypen" className="text-primary underline underline-offset-4 hover:opacity-80 font-medium">
                   den interaktive prototype
-                </Link>
-                .
+                </Link>{" "}
+                og se hvordan det fungerer.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
