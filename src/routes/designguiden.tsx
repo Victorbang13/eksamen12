@@ -4,7 +4,7 @@ import { Maximize2, Minimize2, Check, Copy, X, ArrowRight, ChevronLeft } from "l
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
 import flowBibliotekImg from "@/assets/flow-bibliotek.png";
 import hotspotImg from "@/assets/hotspot.webp";
-import opgaveoversigtImg from "@/assets/opgaveoversigt.png";
+import opgaveoversigtImg from "@/assets/opgaveoversigt.webp";
 import komposition1Img from "@/assets/komposition-1.webp";
 import komposition2Img from "@/assets/komposition-2.webp";
 import komposition3Img from "@/assets/komposition-3.webp";
