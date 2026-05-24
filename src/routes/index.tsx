@@ -1,9 +1,13 @@
+// Forside (/) — landing page for AMERO FlexPOS Onboarding.
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
 
+// Lucide ikoner — træ-rystes så kun de importerede ikoner ender i bundlet.
 import { ShieldCheck, Clock, HandHeart, Quote, ArrowRight, MonitorPlay, BookOpenCheck } from "lucide-react";
 
+// Route-konfiguration. Filsti `src/routes/index.tsx` mappes til URL `/`.
 export const Route = createFileRoute("/")({
+  // Per-route <head>-tags — overskriver default fra __root.tsx.
   head: () => ({
     meta: [
       { title: "Forside — AMERO FlexPOS Onboarding" },
@@ -12,6 +16,7 @@ export const Route = createFileRoute("/")({
         content:
           "Oplev FlexPOS' nye indbyggede onboarding. Et trygt sandbox-miljø, hvor nye medarbejdere og frivillige kan lære kassesystemet i deres eget tempo.",
       },
+      // OG-tags specifikt for forsiden (vises ved deling på sociale medier).
       { property: "og:title", content: "Forside — AMERO FlexPOS Onboarding" },
       {
         property: "og:description",
@@ -23,18 +28,28 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+/**
+ * Forsidens komponent. Opbygget af 4 sektioner:
+ *  1. Hero (Z-pattern layout)
+ *  2. Tre value props (F-pattern)
+ *  3. Citat / social proof
+ *  4. Bund-CTA
+ */
 function Index() {
   return (
     <>
       <SiteNav />
+      {/* id="main" matcher skip-linkens target i SiteNav. */}
       <main id="main">
-        {/* Hero — Z-pattern */}
+        {/* === 1. Hero — Z-pattern med tekst venstre, billede højre === */}
         <section className="bg-soft" aria-labelledby="intro">
           <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 items-center">
             <div>
+              {/* "Nyt" badge — fremhæver at funktionen er ny. */}
               <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-sm text-sm font-medium mb-4">
                 Nyt i FlexPOS
               </span>
+              {/* Sidens H1 — kun ét pr. side af hensyn til SEO og a11y. */}
               <h1 id="intro" tabIndex={-1} className="text-4xl sm:text-5xl lg:text-6xl text-primary scroll-mt-24 focus:outline-none">
                 Gør FlexPOS oplæringen tryg og ensartet
               </h1>
@@ -49,6 +64,7 @@ function Index() {
                 og se hvordan det fungerer.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
+                {/* Primær CTA — fører til prototype-siden. */}
                 <Link
                   to="/prototypen"
                   className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium hover:opacity-90 focus-visible:outline-offset-4 shadow-md"
@@ -59,17 +75,20 @@ function Index() {
               </div>
             </div>
             <div className="relative">
+              {/* Hero-billede — fast aspect-ratio undgår CLS. */}
               <div className="aspect-[4/3] w-full rounded-md bg-white shadow-lg border border-soft overflow-hidden flex items-center justify-center">
                 <img
                   src="/flexpos-mockup.webp"
                   alt="UI mockup af FlexPOS kassesystem med interaktive hotspots til oplæring"
                   width={1920}
                   height={1299}
+                  // fetchPriority="high" sikrer at LCP-billedet hentes først.
                   fetchPriority="high"
                   decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>
+              {/* Lille badge nede i hjørnet der signalerer "sandbox". */}
               <div className="absolute -bottom-3 -right-3 bg-primary text-primary-foreground px-3 py-1 rounded-sm text-sm font-semibold shadow">
                 Sandbox-miljø
               </div>
@@ -77,7 +96,7 @@ function Index() {
           </div>
         </section>
 
-        {/* Value props — F-pattern */}
+        {/* === 2. Value props — tre fordelskort i F-pattern grid === */}
         <section className="bg-background" aria-labelledby="fordele">
           <div className="mx-auto max-w-6xl px-4 py-16 lg:py-20">
             <div className="max-w-2xl mb-12">
@@ -91,6 +110,8 @@ function Index() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
+              {/* Data-driven rendering: kortene ligger som array, så det er
+                  let at tilføje/fjerne uden at gentage JSX. */}
               {[
                 {
                   Icon: ShieldCheck,
@@ -109,6 +130,7 @@ function Index() {
                 },
               ].map(({ Icon, title, text }) => (
                 <article
+                  // `key` er påkrævet af React for at identificere listeelementer.
                   key={title}
                   className="bg-softer p-6 rounded-sm border-l-4 border-primary hover:shadow-md transition-shadow"
                 >
@@ -125,10 +147,13 @@ function Index() {
           </div>
         </section>
 
-        {/* Social proof */}
+        {/* === 3. Social proof / citat === */}
         <section className="bg-soft" aria-labelledby="citat">
           <div className="mx-auto max-w-4xl px-4 py-16 lg:py-20">
+            {/* sr-only: overskrift er skjult visuelt men læses op af skærmlæser. */}
             <h2 id="citat" tabIndex={-1} className="sr-only scroll-mt-24 focus:outline-none">Citat</h2>
+            {/* <figure> + <blockquote> + <figcaption> er den semantisk korrekte
+                struktur til et citat med kildeangivelse. */}
             <figure className="bg-white p-8 lg:p-12 rounded-sm shadow-sm border-l-4 border-accent relative">
               <Quote
                 size={48}
@@ -146,9 +171,8 @@ function Index() {
           </div>
         </section>
 
-
-
-        {/* Bottom CTA */}
+        {/* === 4. Afsluttende CTA — gentager primær handling for at fange
+                læseren der scrollede til bunden uden at klikke. === */}
         <section className="bg-background" aria-labelledby="kom-i-gang">
           <div className="mx-auto max-w-4xl px-4 py-16 lg:py-20 text-center">
             <h2 id="kom-i-gang" tabIndex={-1} className="text-3xl sm:text-4xl text-primary scroll-mt-24 focus:outline-none">

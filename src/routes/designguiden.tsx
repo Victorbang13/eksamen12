@@ -1,7 +1,13 @@
+// Designguiden (/designguiden) — digital design manual for FlexPOS
+// onboarding-flowet. Indeholder farver, typografi, komposition, ikoner,
+// tilgængelighed, m.m. Bygget op af en sticky sidenav til venstre og en
+// sektion pr. emne til højre.
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Maximize2, Minimize2, Check, Copy, X, ArrowRight, ChevronLeft } from "lucide-react";
 import { SiteNav, SiteFooter } from "@/components/SiteNav";
+
+// Statiske billeder importeres som modules så Vite kan hashe og optimere dem.
 import flowBibliotekImg from "@/assets/flow-bibliotek.webp";
 import hotspotImg from "@/assets/hotspot.webp";
 import opgaveoversigtImg from "@/assets/opgaveoversigt.webp";
@@ -15,24 +21,38 @@ import gridLayoutImg from "@/assets/grid-layout.png";
 
 
 
+// Type for ét punkt i sidenav'en: stabilt id (matcher section-id), nummer og label.
 type NavItem = { id: string; num: string; label: string };
 
+/**
+ * Sticky sidebar-navigation der highlighter den aktuelle sektion mens
+ * brugeren scroller. Aktiv sektion bestemmes ved at finde det øverste
+ * element der har passeret 30% af viewport-højden.
+ */
 function SideNav({ items }: { items: NavItem[] }) {
+  // Aktuelt aktivt section-id; default er det første element.
   const [activeId, setActiveId] = useState<string>(items[0]?.id ?? "");
 
+
   useEffect(() => {
+    // Find DOM-noderne for alle sektions-ids. Filtrer null fra hvis et
+    // section-id ikke findes på siden.
     const sections = items
       .map((i) => document.getElementById(i.id))
       .filter((el): el is HTMLElement => !!el);
     if (sections.length === 0) return;
 
+    // Beregner hvilken sektion der skal være aktiv ud fra scroll-position.
     const computeActive = () => {
+      // Tærskel: 30% nede i viewport — føles naturligt som "fokus-linje".
       const offset = window.innerHeight * 0.3;
-      // If scrolled to bottom, force last section active
+      // Edge case: når brugeren har scrollet helt til bunden, marker den
+      // sidste sektion uanset hvor højt den ligger i viewport.
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
         setActiveId(sections[sections.length - 1].id);
         return;
       }
+      // Gå sektionerne igennem fra top og find den sidste der er rullet forbi tærsklen.
       let current = sections[0].id;
       for (const s of sections) {
         if (s.getBoundingClientRect().top - offset <= 0) {
@@ -44,14 +64,17 @@ function SideNav({ items }: { items: NavItem[] }) {
       setActiveId(current);
     };
 
+    // Initial beregning + listeners. `passive: true` på scroll forbedrer performance.
     computeActive();
     window.addEventListener("scroll", computeActive, { passive: true });
     window.addEventListener("resize", computeActive);
+    // Cleanup: fjern listeners ved unmount eller hvis `items` ændres.
     return () => {
       window.removeEventListener("scroll", computeActive);
       window.removeEventListener("resize", computeActive);
     };
   }, [items]);
+
 
 
   return (
@@ -85,14 +108,22 @@ function SideNav({ items }: { items: NavItem[] }) {
 }
 
 
+/**
+ * Indlejret Figma-prototype af "flow-biblioteket". Funktionel set næsten
+ * identisk med PrototypeEmbed i prototypen.tsx, men har en ekstra
+ * "klik for at interagere"-overlay så side-scroll ikke bliver kapret af iframen.
+ */
 function FlowBibliotekEmbed() {
   const [fullscreen, setFullscreen] = useState(false);
+  // `active` styrer om klik-for-at-interagere overlay'et er fjernet.
   const [active, setActive] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // URL til Figma-prototypen for flow-biblioteket. hide-ui=1 fjerner Figmas UI.
   const iframeSrc =
     "https://embed.figma.com/proto/lJH1sQMRckEgrwtfUsJ69i/Hovedopgave?node-id=116-11874&scaling=scale-down-width&content-scaling=fixed&page-id=116%3A11565&starting-point-node-id=116%3A12251&embed-host=share&hide-ui=1&bg-color=FFFFFF";
 
+  // Toggler browserens Fullscreen API; falder tilbage til CSS-fullscreen ved fejl.
   const toggleFullscreen = async () => {
     const el = containerRef.current;
     if (!el) return;
@@ -108,6 +139,7 @@ function FlowBibliotekEmbed() {
       setFullscreen((v) => !v);
     }
   };
+
 
   return (
     <div
@@ -136,6 +168,8 @@ function FlowBibliotekEmbed() {
             : "relative w-full overflow-hidden rounded-lg bg-white"
         }
         style={fullscreen ? undefined : { height: 700 }}
+        // Når musen forlader området, gen-aktiver overlay'et så scroll
+        // igen virker normalt på siden.
         onMouseLeave={() => setActive(false)}
       >
         <iframe
@@ -143,9 +177,12 @@ function FlowBibliotekEmbed() {
           src={iframeSrc}
           scrolling="no"
           allowFullScreen
+          // loading="lazy" — embedden er langt nede på siden, hentes først ved scroll.
           loading="lazy"
           className="absolute top-0 left-0 w-full h-full border-0"
         />
+        {/* Overlay der absorberer klik indtil brugeren bevidst vil interagere.
+            Forhindrer at scroll-hjul ramler ned i Figma-iframen. */}
         {!active && (
           <button
             type="button"
@@ -163,7 +200,9 @@ function FlowBibliotekEmbed() {
   );
 }
 
+// Route-konfiguration for "/designguiden".
 export const Route = createFileRoute("/designguiden")({
+
   head: () => ({
     meta: [
       { title: "Designguiden — AMERO" },
@@ -182,6 +221,11 @@ export const Route = createFileRoute("/designguiden")({
   component: Designguide,
 });
 
+/**
+ * Genbrugelig billede-container med fast aspect-ratio. Hvis intet billede
+ * gives, vises en stiplet placeholder. `zoomable` aktiverer en modal
+ * (lightbox) når brugeren klikker billedet.
+ */
 function ImageBox({
   label = "Tilføj billede",
   ratio = "aspect-[16/9]",
@@ -195,7 +239,9 @@ function ImageBox({
   seed?: string;
   zoomable?: boolean;
 }) {
+  // State for om lightbox er åben.
   const [zoomed, setZoomed] = useState(false);
+  // Fallback: hvis `src` mangler, kan vi bruge en placeholder fra picsum.photos via `seed`.
   const imageSrc = src ?? (seed ? `https://picsum.photos/seed/${encodeURIComponent(seed)}/1200/675` : undefined);
 
   if (imageSrc) {
@@ -205,14 +251,17 @@ function ImageBox({
           <img
             src={imageSrc}
             alt={label}
+            // cursor-zoom-in indikerer at billedet kan klikkes for at forstørres.
             className={`w-full h-full object-contain ${zoomable ? "cursor-zoom-in" : ""}`}
             loading="lazy"
             onClick={zoomable ? () => setZoomed(true) : undefined}
           />
         </figure>
+        {/* Lightbox-modal — vises kun når både zoomable=true OG zoomed=true. */}
         {zoomable && zoomed && (
           <div
             className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 cursor-zoom-out"
+            // Klik hvor som helst lukker modalen igen.
             onClick={() => setZoomed(false)}
             role="dialog"
             aria-label={`${label} – forstørret`}
@@ -224,6 +273,7 @@ function ImageBox({
     );
   }
 
+  // Placeholder vist når intet billede er sat — typisk under udvikling.
   return (
     <div
       className={`${ratio} w-full rounded-sm border-2 border-dashed border-primary/30 bg-grey/50 flex items-center justify-center text-sm opacity-60 italic`}
@@ -236,19 +286,28 @@ function ImageBox({
   );
 }
 
+
+/**
+ * Code-block med syntax-label og "kopiér"-knap. Bruges til at vise
+ * eksempel-kode (CSS, HTML) som læseren let kan kopiere.
+ */
 function CodeBlock({ code, language = "css" }: { code: string; language?: string }) {
+  // State der midlertidigt skifter ikon/tekst når der er kopieret.
   const [copied, setCopied] = useState(false);
+  // Skriver `code` til udklipsholderen og viser bekræftelse i 1.5 sek.
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(code);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch {
+      // Clipboard kan fejle ved manglende permissions eller ældre browsere.
       /* noop */
     }
   };
   return (
     <div className="relative rounded-sm border border-primary/15 bg-primary text-primary-foreground overflow-hidden">
+      {/* Header med sprog-label og kopiér-knap. */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-white/10 text-xs font-mono uppercase tracking-wider opacity-80">
         <span>{language}</span>
         <button
@@ -261,6 +320,8 @@ function CodeBlock({ code, language = "css" }: { code: string; language?: string
           {copied ? "Kopieret" : "Kopiér"}
         </button>
       </div>
+      {/* <pre> bevarer whitespace; overflow-x-auto giver horisontal scroll
+          ved lange linjer i stedet for at bryde layoutet. */}
       <pre className="overflow-x-auto p-4 text-sm leading-relaxed">
         <code className="font-mono whitespace-pre">{code}</code>
       </pre>
@@ -268,6 +329,12 @@ function CodeBlock({ code, language = "css" }: { code: string; language?: string
   );
 }
 
+
+/**
+ * Visualisering af én statusfarve (success/warning/error/info).
+ * Viser et eksempel-banner med korrekt tekst/baggrund-kombo, samt
+ * HEX-koderne som dokumentation.
+ */
 function StatusSwatch({
   name,
   textHex,
@@ -281,6 +348,7 @@ function StatusSwatch({
 }) {
   return (
     <div className="rounded-sm border border-primary/10 overflow-hidden bg-white">
+      {/* Sample-banneret bruger inline style fordi farverne er dynamiske props. */}
       <div
         className="px-4 py-5 text-sm font-medium"
         style={{ backgroundColor: bgHex, color: textHex }}
@@ -290,6 +358,7 @@ function StatusSwatch({
       <div className="p-3 text-xs space-y-1">
         <div className="font-medium text-sm">{name}</div>
         <div className="font-mono opacity-70">
+          {/* Error har en særlig label fordi farven også bruges til borders. */}
           {name === "Error" ? "Tekst & border på exit knapper: " : "Tekst: "}
           {textHex}
         </div>
@@ -299,6 +368,10 @@ function StatusSwatch({
   );
 }
 
+/**
+ * To-kolonne liste med "Gør dette" / "Gør ikke dette" punkter.
+ * Bruges som standard pattern under hver designsektion.
+ */
 function DoDontList({ dos, donts }: { dos: string[]; donts: string[] }) {
   return (
     <div className="grid gap-6 md:grid-cols-2 mt-6">
@@ -322,9 +395,14 @@ function DoDontList({ dos, donts }: { dos: string[]; donts: string[] }) {
   );
 }
 
+/**
+ * Enkelt farve-swatch der viser farven som baggrund + navn og HEX-kode.
+ * `textOn` styrer om HEX-overlay-teksten skal være lys eller mørk for kontrast.
+ */
 function ColorSwatch({ name, hex, textOn = "light" }: { name: string; hex: string; textOn?: "light" | "dark" }) {
   return (
     <div className="rounded-sm border border-primary/10 overflow-hidden">
+      {/* Selve farvefeltet — inline style fordi farven er dynamisk. */}
       <div
         className="h-20 w-full"
         style={{ backgroundColor: hex, color: textOn === "dark" ? "#FFFFFF" : "#333333" }}
@@ -338,6 +416,11 @@ function ColorSwatch({ name, hex, textOn = "light" }: { name: string; hex: strin
   );
 }
 
+/**
+ * Wrapper for hver nummereret sektion i designguiden. Standardiserer
+ * spacing, kant, fokus-baggrund og scroll-margin (så ankerlinks ikke
+ * skjules bag sticky-headeren).
+ */
 function SectionShell({
   id,
   number,
@@ -353,6 +436,7 @@ function SectionShell({
     <section aria-labelledby={id} className="bg-grey p-8 rounded-sm border border-primary/10">
       <h2
         id={id}
+        // tabIndex={-1} så vi kan flytte fokus programmatisk hertil ved ankernavigation.
         tabIndex={-1}
         className="text-2xl text-primary border-b border-primary/20 pb-3 scroll-mt-40 focus:outline-none"
       >
@@ -363,11 +447,18 @@ function SectionShell({
   );
 }
 
+/**
+ * Hovedkomponent for designguide-siden. Layoutet er 2-kolonne på desktop
+ * (sidebar venstre, indhold højre) og 1-kolonne på mobil. Hver
+ * design-sektion ligger som sin egen <SectionShell> med tilhørende id der
+ * matcher items i SideNav.
+ */
 function Designguide() {
   return (
     <>
       <SiteNav />
       <main id="main">
+        {/* Side-intro med H1 og kort beskrivelse. */}
         <section className="bg-soft" aria-labelledby="intro">
           <div className="mx-auto max-w-5xl px-4 py-12">
             <h1
@@ -382,6 +473,8 @@ function Designguide() {
             </p>
           </div>
         </section>
+
+
 
         <div className="mx-auto max-w-6xl px-4 py-12 grid gap-10 lg:grid-cols-[220px_1fr]">
           <SideNav
