@@ -469,7 +469,7 @@ function Designguide() {
               Designguiden
             </h1>
             <p className="mt-4 text-lg max-w-2xl">
-              Digital design manual — retningslinjer for brugen af brand-elementerne i onboarding-flowet.
+              Digital design manual - retningslinjer for brugen af brand-elementerne i onboarding-flowet.
             </p>
           </div>
         </section>
