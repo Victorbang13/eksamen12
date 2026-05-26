@@ -1,48 +1,44 @@
-Scoren var 98 / 95 / 96 / 100 (Performance / Accessibility / Best Practices / SEO) før mine seneste rettelser. Nedenfor er hver kategori opdelt i "jeg kan fikse" og "du skal fikse".
+# Standalone HTML-version af prototype-siden
 
-## Jeg kan fikse i koden
+Lav én selvstændig fil `public/prototypen.html` der gengiver `/prototypen`-siden i ren HTML + CSS + en lille smule vanilla JS til fullscreen-knappen. Filen kan åbnes direkte i en browser eller hostes som statisk fil — helt løsrevet fra React, TanStack Router og Tailwind.
 
-### Accessibility — kontrast (95 → 100)
-- Den aktive navigations-link i `SiteNav` bruger `!text-[#4FAED1]` på hvid baggrund (~2.5:1, fejler). Skift til mørkeblå/primær eller en mørkere accent.
-- Sandbox-badgen på forsiden (`bg-accent text-primary`) flaggedes også — øg kontrast ved fx at bruge `bg-primary text-primary-foreground` eller en mørkere variant.
+## Indhold i filen
 
-### Performance — billeder og LCP
-- `amero-logo.png` vises som 177×40, men filen er 1200×271 (~23 KiB). Generér en mindre logo-variant (eller skifter til SVG) og tilføj eksplicit `width`/`height` for at fjerne CLS-bidraget.
-- Unsplash hero-billedet hentes i 900×675 men vises i 702×469. Sænk `w=` parameteren og tilføj `width`/`height`.
-- LCP-billedet (hero) mangler `fetchpriority="high"` og bør ikke have `loading="lazy"`. Begge dele rettes i `src/routes/index.tsx`.
+1. **`<head>`**
+   - `<title>` og `<meta description>` matchende den nuværende route.
+   - `<link rel="preconnect">` til Figmas domæner (samme som i dag) for hurtigere iframe-load.
+   - Inline `<style>` med al CSS — ingen eksterne stylesheets, så filen er 100% selvbærende.
 
-### Performance — preconnect
-- Tilføj `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>` i `__root.tsx` (~80 ms LCP-besparelse).
+2. **`<body>`**
+   - Simpel header med titel "Prototypen" og introtekst (samme tekst som routen).
+   - Et hvidt kort der wrapper iframen, med samme look: `border-radius`, blød skygge, padding.
+   - Aspect-ratio-wrapper (padding-bottom 60%) der holder iframens højde proportional med bredden.
+   - `<iframe>` med samme Figma-URL, `scrolling="no"`, `allowfullscreen`, `loading="eager"`.
+   - Fullscreen-knap øverst i kortet — vises kun under 768px via `@media (max-width: 767px)`.
+   - Afsluttende CTA-sektion med link til designguiden (kan pege på `/designguiden` eller udelades — se note).
 
-### Best Practices — woff2 404
-- Én af Roboto-woff2-URL'erne i `src/styles.css` returnerer 404. Tjek og udskift med en gyldig Google Fonts v47-URL (eller skift til `<link>` mod fonts.googleapis.com).
+3. **`<script>`** (få linjer vanilla JS)
+   - Klik på fullscreen-knappen kalder `container.requestFullscreen()`.
+   - `fullscreenchange`-listener opdaterer knappens label/ikon og toggler en CSS-klasse på containeren (så CSS kan skifte til fixed/inset-0 hvis Fullscreen API fejler).
+   - Try/catch-fallback der toggler klassen manuelt hvis API'et ikke er tilgængeligt (Safari iOS).
 
-## Du skal selv håndtere
+## Styling-strategi
 
-### Best Practices — HTTP-sikkerhedsheaders
-Disse kræver server-/platform-konfiguration, ikke kodeændring i appen:
-- **CSP** (Content-Security-Policy) — ingen header fundet.
-- **HSTS** med `preload` — ingen header fundet.
-- **COOP** (Cross-Origin-Opener-Policy) — ingen header fundet.
-- **X-Frame-Options / frame-ancestors** — ingen header fundet.
-- **Trusted Types** (`require-trusted-types-for`) i CSP — ingen header fundet.
+- Brug samme farver som i `src/styles.css` (hvid baggrund, mørk primær til CTA-sektion) — hardcodes som hex i den standalone fil siden den ikke deler design tokens.
+- Skygge: `box-shadow: 0 10px 30px rgba(0,0,0,0.1)` (samme som i React-versionen).
+- Knap-ikoner: brug inline SVG (maximize/minimize fra Lucide) for at undgå eksterne afhængigheder.
+- Font: system-font-stack så filen ikke kræver Google Fonts.
 
-Lovable's published hosting eksponerer ikke i dag custom response headers — det er en platform-/infrastruktur-beslutning. Hvis du vil have dem, skal du enten:
-1. Bede Lovable-support tilføje headers på dit `.lovable.app`/custom domain, eller
-2. Sætte dit eget custom domain bag en CDN (fx Cloudflare) hvor du selv kan styre headers.
+## Hvor filen lægges
 
-### Performance — cache TTL
-- `/~flock.js` har 25 min cache. Det er Lovables egen analytics-fil — du kan ikke ændre den.
+`public/prototypen.html` — filer i `public/` serves som-de-er af Vite/Cloudflare, så den vil være tilgængelig på `https://vbstudio.dk/prototypen.html`. Den eksisterende `/prototypen`-route i React forbliver uændret.
 
-### "Reduce unused JavaScript / 3rd party"
-- Største bidragsydere er `chrome-extension://...` (din egen browsers ad-blocker mv.). Det påvirker kun din test, ikke rigtige brugere. Du kan ignorere — eller køre testen i incognito uden extensions for et renere resultat.
+## Hvad der IKKE ændres
 
-### Manuel SEO/A11y-check
-Lighthouse markerer ting der kun kan tjekkes manuelt (logisk tab-rækkefølge, focus-trap, structured data validering osv.). Det er ikke fejl — bare en påmindelse om at teste manuelt.
+- Selve `/prototypen`-routen i React-projektet røres ikke.
+- Ingen ændringer i navigation, SiteNav eller andre routes.
+- Figma-prototypen selv er stadig en iframe — den kan ikke laves om til HTML/CSS.
 
-## Foreslået rækkefølge når du godkender
-1. Kontrast-fixes i `SiteNav` og forsidens badge.
-2. Logo: byt til mindre fil + sæt `width`/`height`.
-3. Hero: sænk Unsplash-størrelse, fjern `loading="lazy"`, tilføj `fetchpriority="high"` + `width`/`height`.
-4. Preconnect til `fonts.gstatic.com`.
-5. Find og udskift den 404'ende Roboto-woff2.
+## Note til dig
+
+Skal CTA'en nederst i den standalone fil linke tilbage til `/designguiden` (på det publicerede site), til en tilsvarende standalone `designguiden.html`, eller helt udelades? Default i planen: link til `/designguiden` på det publicerede domæne. Sig til hvis du foretrækker noget andet.
