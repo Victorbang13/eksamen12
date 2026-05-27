@@ -20,9 +20,13 @@ export function CarbonBadge() {
     const now = Date.now();
 
     if (cached) {
-      const parsed = JSON.parse(cached) as CarbonResult;
-      setResult(parsed);
-      if (parsed.t && now - parsed.t < 86_400_000) return;
+      try {
+        const parsed = JSON.parse(cached) as CarbonResult;
+        setResult(parsed);
+        if (parsed.t && now - parsed.t < 86_400_000) return;
+      } catch {
+        localStorage.removeItem(cacheKey);
+      }
     }
 
     fetch(`https://api.websitecarbon.com/b?url=${encodedUrl}`)
