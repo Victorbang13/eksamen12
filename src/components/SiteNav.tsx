@@ -3,6 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Phone, Mail, Star, Menu, X, ArrowRight } from "lucide-react";
 import ameroLogo from "@/assets/amero-logo.webp";
+import { CarbonBadge } from "@/components/CarbonBadge";
+
 
 // Fælles styling for nav-links i desktop-navigationen.
 // Defineret som konstanter for at undgå gentagelse og sikre konsistens.
@@ -214,8 +216,8 @@ export function SiteFooter() {
           </p>
         </div>
         {/* Carbon Badge fra websitecarbon.com — viser sidens CO2-aftryk. */}
-        <div id="wcb" className="carbonbadge wcb-d" />
-        <script async defer src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" />
+        <CarbonBadge />
+
       </div>
     </footer>
   );
