@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Phone, Mail, Star, Menu, X, ArrowRight } from "lucide-react";
 import ameroLogo from "@/assets/amero-logo.webp";
-import { CarbonBadge } from "@/components/CarbonBadge";
+
 
 
 // Fælles styling for nav-links i desktop-navigationen.
@@ -215,8 +215,6 @@ export function SiteFooter() {
             Denne hjemmeside er udelukkende lavet til skolebrug og repræsenterer ikke Amero.
           </p>
         </div>
-        {/* Carbon Badge fra websitecarbon.com — viser sidens CO2-aftryk. */}
-        <CarbonBadge />
 
       </div>
     </footer>
