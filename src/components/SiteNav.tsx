@@ -205,12 +205,17 @@ export function SiteNav() {
 export function SiteFooter() {
   return (
     <footer className="bg-primary on-primary text-primary-foreground mt-16">
-      <div className="mx-auto max-w-6xl px-4 py-6 text-sm space-y-2">
-        {/* Årstal beregnes dynamisk så footeren altid er aktuel. */}
-        <p>© {new Date().getFullYear()} AMERO — FlexPOS Onboarding</p>
-        <p className="opacity-80">
-          Denne hjemmeside er udelukkende lavet til skolebrug og repræsenterer ikke Amero.
-        </p>
+      <div className="mx-auto max-w-6xl px-4 py-6 text-sm space-y-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="space-y-2">
+          {/* Årstal beregnes dynamisk så footeren altid er aktuel. */}
+          <p>© {new Date().getFullYear()} AMERO — FlexPOS Onboarding</p>
+          <p className="opacity-80">
+            Denne hjemmeside er udelukkende lavet til skolebrug og repræsenterer ikke Amero.
+          </p>
+        </div>
+        {/* Carbon Badge fra websitecarbon.com — viser sidens CO2-aftryk. */}
+        <div id="wcb" className="carbonbadge wcb-d" />
+        <script async defer src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" />
       </div>
     </footer>
   );
