@@ -482,7 +482,7 @@ function Designguide() {
               { id: "brug-af-elementer", num: "1.", label: "Brug af elementer" },
               { id: "farver-og-kontraster", num: "2.", label: "Farver & Kontraster" },
               { id: "afstande-og-komposition", num: "3.", label: "Afstande og Komposition" },
-              { id: "tone-of-voice", num: "4.", label: "Tone of Voice" },
+              { id: "tone-of-voice", num: "4.", label: "Sprogbrug (Tone of Voice & UX Writing)" },
               { id: "typografi", num: "5.", label: "Typografi" },
               { id: "grid-og-layout", num: "6.", label: "Grid og Layout" },
               { id: "ikoner", num: "7.", label: "Ikoner" },
@@ -673,7 +673,7 @@ function Designguide() {
           </SectionShell>
 
           {/* 4. Tone of Voice */}
-          <SectionShell id="tone-of-voice" number={4} title="Tone of Voice & UX Writing">
+          <SectionShell id="tone-of-voice" number={4} title="Sprogbrug (Tone of Voice & UX Writing)">
             <p>
               For at sikre at vi altid lyder som os, er det vigtigt at følge BWC'en. Dette er en stor del af at få
               brugerne godt og let igennem de forskellige flows, uden de sidder fast.
